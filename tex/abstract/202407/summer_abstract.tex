@@ -1,0 +1,81 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+% packages
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[dvipdfmx]{jsarticle} % 文章の形式を設定
+\usepackage{nopageno}
+\usepackage[margin=2.5cm]{geometry} % 書式の空白を設定
+\usepackage[utf8]{inputenc} % 文字コードをUTF-8に設定
+\usepackage{hyperref} % 目次にリンクを付けるため
+\usepackage{lipsum} % ダミーテキスト用
+\usepackage{tcolorbox} % 枠を利用するため
+\usepackage{amsmath} % 数式の記述を行うため
+\usepackage{bm} % ベクトルを太字で表示するため
+\usepackage{graphicx} % 画像を表示するため
+\usepackage{float} % 画像正しい位置で表示するため
+\usepackage{tensor} % テンソルを記載するため
+\usepackage{multicol} % 複数段落を作成するため
+\usepackage{tikz} % 図を作成するため
+\usepackage{enumerate} % リストを作成するため
+
+% "thebibliography" 環境のタイトルを "参考文献" に変更
+\renewcommand\refname{参考文献}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 諸情報
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+\title{シュバルツシルト時空における光源の軌道予測}
+\author{20041054　大豆生田 幹}
+\date{}
+\pagestyle{empty}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 以下、本文
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+% タイトルの出力
+\fontsize{14pt}{14pt}\selectfont 
+\maketitle
+
+% 文章の大きさ決定
+\fontsize{11pt}{11pt}\selectfont 
+
+ブラックホールは、一度入ったらどんな粒子や光さえも抜け出すことができない時空 (時間と空間)の領域である。
+その観測が近年積極的に行われている。
+2019年4月には、国際共同研究プロジェクト「イベントホライズンテレスコープ (Event Horizon Telescope)」によって、M87銀河の中心に位置する超大質量天体の影の画像が公開された。
+この影は、一般相対論で予言されるブラックホールの影(シャドウ)に酷似していることから、「ブラックホールシャドウ」と呼ばれている。\\
+
+
+こうした背景を踏まえ、卒業研究では、
+シャドウを形成する中心天体へ自由落下する光源の光学的出現を明らかにすることを目指す。これを行うには
+\begin{enumerate}[(a)\,]
+\item 中心天体の周りを運動する光源はどのような軌道を描くのか\\
+\item 光源から放たれた光はどのような軌道で観測者に届くのか
+\end{enumerate}
+を考える必要がある。本発表では、特に(a)について考察する。\\
+
+超大質量天体の周りの軌道予測は、力学で学んだケプラー問題を連想させるが、ニュートン力学を用いて予測した計算結果では説明できない現象も存在する。その一例である「水星の近点移動」は、ケプラーの楕円軌道で近似的に記述される水星の公転運動において、水星から太陽までの距離が最も近くなる点 (近点)がずれていく、という現象である。\\
+
+本発表では、近点移動現象に対する一般相対論による影響を明らかにするために、静的球対称な中心重力源の外部の真空領域における天体の束縛軌道を議論する。この真空領域を表す時空は、重力場の基礎方程式であるアインシュタイン方程式の真空解であるシュバルツシルト解によって記述される。特に、円軌道に十分近い束縛軌道に着目すると、$M$を中心重力源の質量、$r$を動径方向の振動中心の半径、$T$を天体の公転周期としたときに、公転周期あたりの近点移動の角度は
+$$
+\frac{\Delta \phi}{T} = \frac{6 \pi GM}{c^2rT} 
+= 41'' \mathrm{/100yr}
+\left( \frac{M}{M_{\odot}} \right) \left( \frac{d}{r} \right)\left( \frac{T_*}{T} \right)
+$$
+であることがわかった。
+ここで$G$は重力定数、
+$c$は光速度、$M_{\odot}=2.0\times 10^{30}\mathrm{\,kg}$は太陽の質量、
+$d= 5.8\times 10^6 \mathrm{\,km}$は水星の平均公転半径、$T_*=0.241\mathrm{\,yr}$は水星の公転周期である。\\
+
+本発表の構成は以下とする:
+\begin{enumerate}[(i)\,]
+\item ニュートン力学に基づく重力源の周りを運動する天体の軌道の分類\\
+\item 一般相対論に基づく天体の運動の定式化\\
+\item シュバルツシルト時空における天体の近点移動現象の考察と数値解析による軌道予測
+\end{enumerate}
+\begin{thebibliography}{99}
+\bibitem{sasaki:2011}佐々木 節, 『一般相対論』(産業図書, 2011). 
+\bibitem{Wald:1984}R. M. Wald, \textit{General Relativity} (The University of Chicago Press, Chicago, 1984).
+\end{thebibliography}
+
+\end{document}

@@ -1,0 +1,139 @@
+\documentclass[dvipdfmx]{report} % 文章の形式を設定
+\usepackage[margin=2.5cm]{geometry} % 書式の空白を設定
+\usepackage[utf8]{inputenc} % 文字コードをUTF-8に設定
+\usepackage{hyperref} % 目次にリンクを付けるため
+\usepackage{lipsum} % ダミーテキスト用
+\usepackage{tcolorbox} % 枠を利用するため
+\usepackage{amsmath} % 数式の記述を行うため
+\usepackage{bm} % ベクトルを太字で表示するため
+\usepackage{graphicx} % 画像を表示するため
+\usepackage{float} % 画像正しい位置で表示するため
+\usepackage{tensor} % テンソルを記載するため
+\usepackage{multicol} % 複数段落を作成するため
+\usepackage{tikz} % 図を作成するため
+\usepackage{enumerate} % リストを作成するため
+\usepackage{amssymb} % 特殊文字を表示するため
+
+
+\title{超大質量天体に落下する星の光学的出現}
+\author{大豆生田 幹}
+\date{}
+
+\begin{document}
+
+\maketitle % タイトルの作成
+\tableofcontents % 目次の作成
+\fontsize{11pt}{11pt}\selectfont % 文字サイズの指定
+
+% =================================
+% =================================
+% =================================
+% =================================
+% =================================
+% 一般相対論
+% =================================
+% =================================
+% =================================
+% =================================
+% =================================
+\chapter{一般相対論}
+
+\section{概念}
+
+\section{ベクトル}
+時空は局所的に平坦とみなすことができた。つまり、時空は局所的にユークリッド空間と同相な空間と考えることができるので、そこでは滑らかな座標が存在する。そこで、座標を以下のようにとることにする。
+\[ (x^0, x^1, x^2, x^3) \]
+時空上で実数値をもつ滑らかな関数$f(x^i)$と、実数$t$をパラメータとする曲線$C(t)$を考える。ここで、曲線$C(t)$上における関数$f(x^i)$の$t$微分は
+\[ \frac{df}{dt} = \frac{\partial f}{\partial x^i} \frac{dx^i}{dt} \]
+とかける。この右辺の成分それぞれに着目する。
+座標変換$(x^0, x^1, x^2, x^3) \rightarrow (\bar{x}^0, \bar{x}^1, \bar{x}^2, \bar{x}^3)$を考えると
+
+\begin{enumerate}[(1)\,]
+
+\item{}
+\[ v^i = \frac{dx^i}{dt}\]
+では、
+\begin{equation*}
+\begin{split}
+	\bar{v}^i &= \frac{d\bar{x}^i}{dt} = \frac{\partial \bar{x}^i}{\partial x^j} v^j
+\end{split}
+\end{equation*}
+このような関係を満たすものを反変ベクトルと言い、上記のようにベクトルの添え字を上に書く。
+
+\item{}
+\[ w_i = \frac{df}{dx^i} \]
+では、
+\begin{equation*}
+\begin{split}
+	\bar{w}_j = \frac{df}{d\bar{x}^i}  = \frac{\partial x^i}{\partial \bar{x}^j} w_i
+\end{split}
+\end{equation*}
+このような関係を満たすものを共変ベクトルと言い、上記のようにベクトルの添え字を下に書く。
+
+\end{enumerate}
+以上のをまとめると、ベクトルは2種類に分類できて、それぞれの座標変換は以下のように書ける。
+\begin{tcolorbox}[title=反変ベクトルの変換則]
+	\[ \bar{v}^i = \frac{\partial \bar{x}^i}{\partial x^j} v^j \]
+\end{tcolorbox}
+\begin{tcolorbox}[title=共変ベクトルの変換則]
+	\[ \bar{w}_i = \frac{\partial x_j}{\partial \bar{x}^i} w_j \]
+\end{tcolorbox}
+
+
+\section{内積}
+
+
+\section{計量}
+
+
+\section{並行移動と共変微分}
+
+
+\section{測地線}
+
+
+\section{アインシュタイン方程式}
+
+
+\section{シュバルツシルトの外部解}
+
+
+% =================================
+% =================================
+% =================================
+% =================================
+% =================================
+% シュバルツシルト時空における軌道
+% =================================
+% =================================
+% =================================
+% =================================
+% =================================
+\chapter{シュバルツシルト時空における天体の軌道}
+\section{軌道の安定性}
+
+
+/////////////////////////////////////////////////////////////////////////\\
+/////////////////////////////////////////////////////////////////////////
+\begin{equation*}
+\begin{split}
+	\bar{w}_j = \left( \right) \int^{}_{}
+\end{split}
+\end{equation*}
+
+\begin{tcolorbox}[title=メモ用]
+\begin{eqnarray*}
+	1 = 0
+\end{eqnarray*}
+\end{tcolorbox}
+
+\begin{equation}
+\left\{ \,
+\begin{aligned}
+	1 &= 0\\
+	1 &= 0\\
+\end{aligned}
+\right.
+\end{equation}
+
+\end{document}

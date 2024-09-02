@@ -1,0 +1,324 @@
+\documentclass[dvipdfmx]{report} % 文章の形式を設定
+\usepackage[margin=2.5cm]{geometry} % 書式の空白を設定
+\usepackage[utf8]{inputenc} % 文字コードをUTF-8に設定
+\usepackage{hyperref} % 目次にリンクを付けるため
+\usepackage{lipsum} % ダミーテキスト用
+\usepackage{tcolorbox} % 枠を利用するため
+\usepackage{amsmath} % 数式の記述を行うため
+\usepackage{bm} % ベクトルを太字で表示するため
+\usepackage{graphicx} % 画像を表示するため
+\usepackage{float} % 画像正しい位置で表示するため
+\usepackage{tensor} % テンソルを記載するため
+\usepackage{multicol} % 複数段落を作成するため
+\usepackage{tikz} % 図を作成するため
+\usepackage{amssymb} % 特殊文字を表示するため
+
+
+\title{勉強したことのまとめ}
+\author{大豆生田 幹}
+\date{}
+
+\begin{document}
+
+\maketitle % タイトルの作成
+\tableofcontents % 目次の作成
+
+% =================================
+% =================================
+% =================================
+% =================================
+% =================================
+% 一般相対論
+% =================================
+% =================================
+% =================================
+% =================================
+% =================================
+\chapter{07/08/2024}
+
+\section{光の測地線方程式}
+粒子の場を表す方程式である、クラインゴルドン方程式
+\[ \left( \frac{1}{c^2}\frac{\partial^2}{\partial t^2} - \nabla^2 + \left( \frac{mc}{\hbar} \right)^2 \right) \phi(\bm{x}, t) = 0 \]
+質量のない光では
+\begin{equation*}
+\begin{split}
+	0 &= \left( \frac{1}{c^2}\frac{\partial^2}{\partial t^2} - \nabla^2 \right)\phi(\bm{x}, t)\\
+	&= \square \phi(\bm{x}, t)
+\end{split}
+\end{equation*}
+これを一般の時空に拡張すると
+\[ g^{ij} \nabla_i \nabla_j \phi = 0 \]
+ここで、\[ \phi = Ce^{i\frac{s}{\epsilon}} \] と書くと
+\begin{equation*}
+\begin{split}
+	\nabla_j \phi &= \nabla \left( Ce^{\frac{is}{\epsilon}} \right)\\
+	&= \left( \nabla_j C \right) e^{\frac{is}{\epsilon}} + \frac{iC}{\epsilon} e^{\frac{is}{\epsilon}} \left( \nabla_j S \right)\\
+	\nabla_i \nabla_j \phi &= \nabla_i \left(  \left( \nabla_j C \right) e^{\frac{is}{\epsilon}} + \frac{iC}{\epsilon} e^{\frac{is}{\epsilon}} \left( \nabla_j S \right) \right)\\
+	&= \left( \nabla_i \nabla_j C \right) e^{\frac{is}{\epsilon}} + \left( \nabla_i S \right) \left( \nabla_j C \right) \frac{2i}{\epsilon} e^{\frac{is}{\epsilon}} + \left( \nabla_i \nabla_j S \right) \frac{iC}{\epsilon} e^{\frac{is}{\epsilon}} -  \left( \nabla_i S \right) \left( \nabla_j S \right) \frac{1}{\epsilon^2} e^{\frac{2is}{\epsilon}}\\
+	g^{ij} \nabla_i \nabla_j \phi &= g^{ij}\left( \nabla_i \nabla_j C \right) e^{\frac{is}{\epsilon}} + g^{ij}\left( \nabla_i S \right) \left( \nabla_j C \right) \frac{2i}{\epsilon} e^{\frac{is}{\epsilon}} + g^{ij}\left( \nabla_i \nabla_j S \right) \frac{iC}{\epsilon} e^{\frac{is}{\epsilon}} -  g^{ij}\left( \nabla_i S \right) \left( \nabla_j S \right) \frac{1}{\epsilon^2} e^{\frac{2is}{\epsilon}}\\
+	&= \left( \square C \right) e^{\frac{is}{\epsilon}} + \left( \nabla_i S \right) \left( \nabla^i C \right) \frac{2i}{\epsilon} e^{\frac{is}{\epsilon}} + \left( \square S \right) \frac{iC}{\epsilon} e^{\frac{is}{\epsilon}} -  \left( \nabla_i S \right) \left( \nabla^i S \right) \frac{1}{\epsilon^2} e^{\frac{2is}{\epsilon}}
+\end{split}
+\end{equation*}
+\begin{equation}
+\left\{ \,
+\begin{aligned}
+	O(\epsilon^{-2}) &: \left( \nabla_i S \right) \left( \nabla^i S \right) = 0\\
+	O(\epsilon^{-1}) &: 2 \left( \nabla_i S \right) \left( \nabla^i C \right) + C \left( \square S \right) = 0\\
+	O(0) &: \square C = 0
+\end{aligned}
+\right.
+\end{equation}
+ここで、\[ \left( \nabla_i S \right) \left( \nabla^i S \right) = 0 \]は光の測地線方程式を表している。
+\[ \nabla_i S  =  k_i \]とおけば
+\begin{equation*}
+\begin{split}
+	0 &= \left( \nabla_i S \right) \left( \nabla^i S \right)\\
+	&= k_i k^i\\
+	&= \nabla_j (k_i k^i)\\
+	&= \nabla_j (k_i g^{ij} k_l)\\
+	&= g^{il} (\nabla_j k_l)k_i + g^{il} (\nabla_j k_i)k_l\\
+	&= 2(\nabla_j k_i)k^i\\
+	&= 2 g^{lj} (\nabla_j \nabla_i S)k^i\\
+	&= 2 (\nabla_i g^{lj}  k_j)k^i\\
+	&= 2 (\nabla_i k^l)k^i\\
+	&= 2\left( \frac{\partial}{\partial x^i} \left( \frac{dx^l}{d\lambda} \right) + \tensor{\Gamma}{^l_{im}} \left( \frac{dx^m}{d\lambda} \right) \right) \frac{dx^i}{d\lambda}
+\end{split}
+\end{equation*}
+\begin{tcolorbox}[title=光の測地線方程式]
+\begin{eqnarray*}
+	0 = \left( \frac{d^2 x^l}{d\lambda^2} \right) + \tensor{\Gamma}{^l_{im}} \left( \frac{dx^i}{d\lambda}\frac{dx^m}{d\lambda} \right)
+\end{eqnarray*}
+\end{tcolorbox}
+
+\section{積分}
+\begin{equation*}
+\begin{split}
+	\left( \frac{d\mu}{d\phi} \right)^2 &= 2MG(\mu)\\
+	\frac{d\mu}{d\phi} &= - \sqrt{2MG(\mu)}\\
+\end{split}
+\end{equation*}
+
+\begin{equation}
+\left\{ \,
+\begin{aligned}
+	\mu_1 &= - \frac{Q + 2M - P}{4MP}\\
+	\mu_2 &= - \frac{1}{P}\\
+	\mu_3 &= - \frac{Q - 2M + P}{4MP}\\
+\end{aligned}
+\right.
+\end{equation}
+
+\begin{equation*}
+\begin{split}
+	\int^{\phi_\infty}_0 d\phi &= \int^{0}_{\mu_2} \frac{d\mu}{- \sqrt{2MG(\mu)}}\\
+	\phi_{\infty} &= \frac{1}{\sqrt{2M}} \int^{\mu_2}_{0} d\mu \left( (\mu - \mu_1)(\mu - \mu_2)(\mu - \mu_3) \right)^{- \frac{1}{2}}\\
+\end{split}
+\end{equation*}
+ここで、
+\begin{equation*}
+\begin{split}
+	\chi &= \sqrt{\mu - \mu_1}\\
+	d\chi &= \frac{1}{2}(\mu - \mu_1)^{- \frac{1}{2}} d\mu
+\end{split}
+\end{equation*}
+とおくと
+\begin{equation*}
+\begin{split}
+	\phi_{\infty} &= \frac{1}{\sqrt{2M}} \int^{\sqrt{\mu_2 - \mu_1}}_{\sqrt{-\mu_1}} \frac{ 2\chi d\chi }{\sqrt{ \chi^2(\chi^2 + \mu_1 - \mu_2)(\chi^2 + \mu - \mu_3) }}\\
+\end{split}
+\end{equation*}
+ここで、
+\begin{equation*}
+\begin{split}
+	\chi &= \sqrt{\mu_2 - \mu_1}\eta\\
+	d\chi &= \sqrt{\mu_2 - \mu_1}d\eta
+\end{split}
+\end{equation*}
+とおくと
+\begin{equation*}
+\begin{split}
+	\phi_{\infty} &= \frac{2}{\sqrt{2M}} \int^{1}_{\sqrt{\frac{\mu_1}{\mu_1 - \mu_2}}} \frac{ \sqrt{\mu_2 - \mu_1} d\eta }{\sqrt{ -(\mu_2 - \mu_1)(1 - \eta^2)((\mu_2 - \mu_1)\eta^2 - \mu_1 + \mu_3) }}\\
+\end{split}
+\end{equation*}
+ここで、
+\begin{equation*}
+\begin{split}
+	\eta &= \sin x\\
+	d\eta &= dx \cos x
+\end{split}
+\end{equation*}
+とおくと
+\begin{equation*}
+\begin{split}
+	\phi_{\infty} &= \frac{2}{\sqrt{2M}} \int^{\frac{\pi}{2}}_{\sin^{-1}\sqrt{\frac{\mu_1}{\mu_1 - \mu_2}}} \frac{ \cos x dx }{\sqrt{\cos^2 x} \sqrt{ -(\mu_2 - \mu_1)\sin^2 x((\mu_2 - \mu_1)\eta^2 - \mu_1 + \mu_3) }}\\
+	&= \frac{2}{\sqrt{2M}} \int^{\frac{\pi}{2}}_{\sin^{-1}\sqrt{\frac{\mu_1}{\mu_1 - \mu_2}}} \frac{ dx }{ \sqrt{\mu_3 - \mu_1} \sqrt{ - \frac{\mu_2 - \mu_1}{\mu_3 - \mu_1}\sin^2 x + 1) }}\\
+\end{split}
+\end{equation*}
+
+\begin{equation}
+\left\{ \,
+\begin{aligned}
+	\mu_3 - \mu_1 &= \frac{Q}{2MP}\\
+	\mu_2 - \mu_1 &= \frac{Q + 6M - P}{4MP}\\
+\end{aligned}
+\right.
+\end{equation}
+
+\begin{equation}
+\left\{ \,
+\begin{aligned}
+	\frac{\mu_2 - \mu_1}{\mu_3 - \mu_1} &= \frac{Q + 6M - P}{2Q}\\
+	\frac{\mu_1}{\mu_1 - \mu_2} &= \frac{Q + 2M - P}{Q + 6M - P}\\
+\end{aligned}
+\right.
+\end{equation}
+
+\begin{equation*}
+\begin{split}
+	\phi_{\infty} &= \frac{2}{\sqrt{2M}} \int^{\frac{\pi}{2}}_{\sin^{-1}\sqrt{\frac{Q + 2M - P}{Q + 6M - P}}} \frac{ dx }{\sqrt{\frac{Q}{2MP}} \sqrt{ 1 - \frac{Q + 6M - P}{2Q} \sin^2 x }}\\
+\end{split}
+\end{equation*}
+ここで、
+\begin{equation*}
+\begin{split}
+	\kappa &= \sqrt{ \frac{Q+6M-P}{2Q} }\\
+	\zeta &= \sin^{-1} \sqrt{\frac{Q+2M-P}{Q+6M-P}}
+\end{split}
+\end{equation*}
+さらに
+\begin{equation*}
+\begin{split}
+	K(\kappa) &= \int^{\frac{\pi}{2}}_{0} \frac{ dx }{\sqrt{ 1 - \kappa^2 \sin^2 x }}\\
+	F(\zeta, \kappa) &= \int^{\zeta}_{0} \frac{ dx }{\sqrt{ 1 - \kappa^2 \sin^2 x }}\\
+\end{split}
+\end{equation*}
+
+とおくと
+\begin{tcolorbox}[title=$\phi_{\infty}$についての式]
+\begin{eqnarray*}
+\begin{split}
+	\phi_{\infty} &= 2\sqrt{ \frac{P}{Q} } \int^{\frac{\pi}{2}}_{\zeta} \frac{ dx }{\sqrt{ 1 - \kappa^2 \sin^2 x }}\\
+	&= 2\sqrt{ \frac{P}{Q} }\left( K(\kappa) - F(\zeta, \kappa) \right)
+\end{split}
+\end{eqnarray*}
+\end{tcolorbox}
+
+\chapter{28/08/2024}
+
+\section{$P \gg M$}
+
+\begin{equation*}
+\left\{ \,
+\begin{aligned}
+	Q &\approx P \left( 1 + 2\left( \frac{M}{P} \right) - 8\left( \frac{M}{P} \right)^2 \right)\\
+	\kappa^2 &\approx 4\left( \frac{M}{P} \right)\\
+	\zeta &\approx \frac{\pi}{4} - \frac{1}{2} \left( \frac{M}{P} \right)\\
+\end{aligned}
+\right.
+\end{equation*}
+
+以上を考慮して$\phi_{\infty}$を計算する
+\begin{equation*}
+\begin{split}
+	\phi_{\infty} &= 2\sqrt{ \frac{P}{Q} } \int^{\frac{\pi}{2}}_{\zeta} \frac{ dx }{\sqrt{ 1 - \kappa^2 \sin^2 x }}\\
+	&\approx 2\sqrt{ \frac{P}{Q} } \int^{\frac{\pi}{2}}_{\zeta} \left( 1 + \frac{1}{2}\kappa^2 \sin^2 x \right) dx\\
+	&= 2\sqrt{ \frac{P}{Q} } \int^{\frac{\pi}{2}}_{\zeta} \left( 1 + \frac{1}{2}\kappa^2 - \frac{1}{4}\kappa^2 \cos 2x \right) dx\\
+	&\approx 2\left( 1 - \frac{M}{P} \right)\int^{\frac{\pi}{2}}_{\frac{\pi}{4} - \frac{M}{2P}} \left( 1 + 2\frac{M}{P} - \frac{M}{P} \cos 2x \right)dx\\
+	&= 2\left( 1 - \frac{M}{P} \right) \left[ x + \frac{M}{P}x - \frac{M}{2P} \sin 2x\right]^{\frac{\pi}{2}}_{\frac{\pi}{4} - \frac{M}{2P}}\\
+	&= \frac{\pi}{2} + \frac{2M}{P}
+\end{split}
+\end{equation*}
+
+\section{$P \approx 3M( 1 + \epsilon )$}
+
+\begin{equation*}
+\left\{ \,
+\begin{aligned}
+	Q &\approx 3M + 5M\epsilon\\
+	\kappa &\approx 1 - \frac{2}{3}\epsilon\\
+	\zeta &\approx \sin^{-1} \sqrt{ \frac{1}{3} } + \frac{\sqrt{3}}{9\cos \left( \sin^{-1} \sqrt{ \frac{1}{3} } \right) }\epsilon\\
+	\sqrt{ \frac{P}{Q} } &\approx 1 - \frac{1}{3}\epsilon\\
+	\sqrt{ 1 - \kappa^2 } &\approx \sqrt{ \frac{4}{3} \epsilon }\\
+	b &\approx b_c \left( 1 + \frac{3}{2}\epsilon^2 \right)\\
+\end{aligned}
+\right.
+\end{equation*}
+
+\begin{tcolorbox}[title=$ \kappa \approx 1 $での公式]
+\begin{eqnarray*}
+\begin{split}
+	K(\kappa) &= \ln \frac{4}{\kappa'} + \left( \frac{1}{2} \right)^2 \left( \ln \frac{4}{\kappa'} - \frac{2}{1 \cdot 2} \right) \kappa'^2 + \left( \frac{1 \cdot 3}{2 \cdot 4} \right)^2 \left( \ln \frac{4}{\kappa'} - \frac{2}{1 \cdot 2} - \frac{2}{3 \cdot 4} \right) \kappa'^4 + ... \\
+	F(\zeta, \kappa) &= \frac{2}{\pi} \bm{K'} \ln \tan \left( \frac{\zeta}{2} + \frac{\pi}{4} \right) - \frac{\tan \zeta}{\cos \zeta} \left( a'_0 - \frac{2}{3}a'_1\tan^2 \zeta + ... \right)
+\end{split}
+\end{eqnarray*}
+\begin{equation*}
+\left\{ \,
+\begin{aligned}
+	a'_0 &= \frac{2}{\pi}\bm{K'} - 1\\
+	a'_n &= a'_{n-1} - \left[ \frac{(2n-1)!!}{2^{n}n!} \right]^2 \kappa'^{2n}
+\end{aligned}
+\right.
+\end{equation*}
+\begin{equation*}
+\begin{split}
+	\bm{K'} &= \frac{\pi}{2} \left( 1 + \left( \frac{1}{2} \right)^2 \kappa'^2 + ... \right)\\
+	\kappa' &= \sqrt{1-\kappa^2}
+\end{split}
+\end{equation*}
+\end{tcolorbox}
+
+以上を考慮して$b$を計算する
+
+\begin{eqnarray*}
+\begin{split}
+	K(\kappa) &\approx \ln \frac{4}{\kappa'}\\
+	F(\zeta, \kappa) &\approx \ln \tan \left( \frac{\zeta}{2} + \frac{\pi}{4} \right)\\
+\end{split}
+\end{eqnarray*}
+
+\begin{eqnarray*}
+\begin{split}
+	\phi_{\infty} &= 2\sqrt{ \frac{P}{Q} }\left( K(\kappa) - F(\zeta, \kappa) \right)\\
+	&\approx 2\left( 1 - \frac{\epsilon}{3} \right) \left( \ln \frac{4}{\kappa'} - \ln \tan \left( \frac{\zeta}{2} + \frac{\pi}{4} \right) \right)\\
+	&= \left( 1 - \frac{\epsilon}{3} \right) \ln \left( \frac{ \frac{12}{\epsilon} }{ \tan^2 \left( \frac{\sin^{-1} \sqrt{\frac{1}{3}}}{2} + \frac{\pi}{4} \right) } \right)\\
+	&\approx \ln \left( \frac{ 12 }{ \tan^2 \left( \frac{\sin^{-1} \sqrt{\frac{1}{3}}}{2} + \frac{\pi}{4} \right) \epsilon } \right) = \ln \frac{\alpha}{\epsilon}\\
+\end{split}
+\end{eqnarray*}
+ここで、
+\[ \phi_\infty = \frac{1}{2}\pi + \frac{1}{2}\mu \]
+より、
+\begin{eqnarray*}
+\begin{split}
+	\frac{\alpha}{\epsilon} &= \exp \left( \frac{\pi}{2} + \frac{\mu}{2} \right)\\
+	\epsilon &= \frac{ \alpha }{ \exp \left( \frac{\pi}{2} + \frac{\mu}{2} \right) }
+\end{split}
+\end{eqnarray*}
+したがって
+\begin{eqnarray*}
+\begin{split}
+	b &\approx b_c \left( 1 + \frac{3}{2}\epsilon^2 \right)\\
+	&= b_c \left( 1 + \frac{3}{2} \left( \frac{ \alpha }{ \exp \left( \frac{\pi}{2} + \frac{\mu}{2} \right) } \right)^2 \right)\\
+	&= b_c \left( 1 + \frac{3}{2} \alpha^2 e^{-\mu} e^{-\pi} \right)\\
+	&\approx 5.19615M + 3.48228Me^{-\mu}\\
+\end{split}
+\end{eqnarray*}
+
+\chapter{18/09/2024}
+\section{降着円盤から発せられた光}
+
+\noindent
+/////////////////////////////////////////////////////////////////////////\\
+/////////////////////////////////////////////////////////////////////////
+\begin{equation*}
+\begin{split}
+	\bar{w}_j = \left( \right) \int^{}_{}
+\end{split}
+\end{equation*}
+
+\begin{tcolorbox}[title=メモ用]
+\begin{eqnarray*}
+	1 = 0
+\end{eqnarray*}
+\end{tcolorbox}
+
+\end{document}
