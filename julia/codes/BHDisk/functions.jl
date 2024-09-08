@@ -6,15 +6,15 @@ include("./constants.jl")
 import Main.Constant
 
 # initialize
-SITA = Constant.SITE
+THETA = Constant.THETA
 MASS = Constant.MASS
 
 function alpha(phi)
-    return acos(cos(phi) * cos(SITA) * ( 1 - cos(phi) ^ 2 * sin(SITA) ^ 2 ) ^ ( - 1 / 2 ))
+    return acos(cos(phi) * cos(THETA) * ( 1 - cos(phi) ^ 2 * sin(THETA) ^ 2 ) ^ ( - 1 / 2 ))
 end
 
 function gamma(phi)
-    return acos(cos(alpha(phi)) * (cos(alpha(phi)) ^ 2 + (cos(SITA) / sin(SITA)) ^ 2) ^ ( - 1 / 2 ))
+    return acos(cos(alpha(phi)) * (cos(alpha(phi)) ^ 2 + (cos(THETA) / sin(THETA)) ^ 2) ^ ( - 1 / 2 ))
 end
 
 function Q(P)
