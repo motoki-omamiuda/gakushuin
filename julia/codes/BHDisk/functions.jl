@@ -10,11 +10,17 @@ THETA = Constant.THETA
 MASS = Constant.MASS
 
 function alpha(phi)
-    return acos(cos(phi) * cos(THETA) * ( 1 - cos(phi) ^ 2 * sin(THETA) ^ 2 ) ^ ( - 1 / 2 ))
+    cos_alpha = ( cos(phi) * cos(THETA) ) / sqrt( 1 - cos(phi) ^ 2 * sin(THETA) ^ 2 )
+    if cos_alpha > 1
+        return acos(1)
+    elseif cos_alpha < -1
+        return acos(-1)
+    end
+    return acos(cos_alpha)
 end
 
 function gamma(phi)
-    return acos(cos(alpha(phi)) * (cos(alpha(phi)) ^ 2 + (cos(THETA) / sin(THETA)) ^ 2) ^ ( - 1 / 2 ))
+    return acos( cos(alpha(phi)) / sqrt( cos(alpha(phi)) ^ 2 + (cos(THETA) / sin(THETA)) ^ 2 ) )
 end
 
 function Q(P)
@@ -22,7 +28,13 @@ function Q(P)
 end
 
 function m(P)
-    return (Q(P) - P + 6 * MASS) / (2 * Q(P))
+    tmp_m = (Q(P) - P + 6 * MASS) / (2 * Q(P))
+    if tmp_m > 1
+        return 1
+    elseif tmp_m < 0
+        return 0
+    end
+    return tmp_m
 end
 
 function b(P)
