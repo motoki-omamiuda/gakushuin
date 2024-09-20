@@ -16,41 +16,20 @@ using Printf
 using Plots
 using Formatting
 
-
 # initialize
 THETA = Constant.THETA
 MASS = Constant.MASS
 
 global plt = plot(
-    xlim=(-35, 35),
-    ylim=(-35, 35),
+    xlim=(-35, 35), ylim=(-35, 35),
     legend=false,
     ratio=1, # アスペクト比を指定
     dpi=800, # 解像度を指定
 )
 
 theta = range(0, stop=2*pi, length=100)
-for (i, j) in zip([2, 6], [0.6, 0.3])
+for (i, j) in zip([2, 3 * sqrt(3)], [0.6, 0.3])
     plot!(plt, i .* MASS .* cos.(theta), i .* MASS .* sin.(theta), linewidth=0, fillcolor=:black, fillalpha=j, fillrange=0)
-end
-
-function serch_zero(f, lower, upper)
-    """
-    範囲内で関数の零点に最も近い部分を探す
-    """
-    min = 1e10
-    x = 0
-    for tmp in lower:0.01:upper
-        try
-            if abs(f(tmp)) < min
-                min = abs(f(tmp))
-                x = tmp
-            end
-        catch
-            continue
-        end
-    end
-    return x
 end
 
 
@@ -61,7 +40,7 @@ function caluculate_disk_image(disk_partial)
     tmp_gamma = Function.gamma(disk_partial.phi)
     @printf("Gamma:\t%.3f\n", tmp_gamma)
 
-    f(P) = (
+    f(P) = abs(
         (Function.Q(P) - P + 6 * MASS) / (4 * MASS * P)
         * Elliptic.Jacobi.sn(
             tmp_gamma * sqrt(Function.Q(P) / P) / 2
@@ -75,19 +54,16 @@ function caluculate_disk_image(disk_partial)
         - 1 / disk_partial.r
     )
 
-    # 探索する範囲を指定
-    P = serch_zero(f, 2 * MASS, 40 * MASS)
-
     # 高速な計算ができる。使用する時は abs をつける
-    # res = optimize(f, 2 * MASS, 40 * MASS)
-    # P = Optim.minimizer(res)
+    res = optimize(f, 3 * MASS, 40 * MASS)
+    P = Optim.minimizer(res)
 
     @printf("P:\t%.3f\t", P)
     return Struct.ImageParticle(Function.b(P), Function.alpha(disk_partial.phi))
 end
 
 
-function write_graph(plt, r, color)
+function main(plt, r, color)
     """
     グラフを描画する
     """
@@ -123,7 +99,7 @@ color_list = ["#0000cd", "#4169e1", "#4682b4", "#2e8b57", "#006400"]
 distance_list = [3, 6, 10, 20, 30]
 
 for (color, distance) in zip(color_list, distance_list)
-    global plt = write_graph(plt, distance * MASS, color)
+    global plt = main(plt, distance * MASS, color)
 end
 
-savefig(plt, format("./images/{:3.0d}.png", Constant.DEGREE))
+savefig(plt, format("./images/{:2.0d}.png", Constant.DEGREE))
