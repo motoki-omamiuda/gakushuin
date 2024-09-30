@@ -11,6 +11,7 @@ import Main.Constant
 import Elliptic
 import Elliptic.Jacobi
 
+# using library
 using Optim
 using Printf
 using Plots
@@ -33,24 +34,75 @@ for (i, j) in zip([2, 3 * sqrt(3)], [0.6, 0.3])
 end
 
 
-function caluculate_disk_image(disk_partial)
+function calc_disk_image(disk_partial)
     """
     光を発する降着円盤における微小粒子が写真板に写す像の位置を計算する
     """
     tmp_gamma = Function.gamma(disk_partial.phi)
-    @printf("Gamma:\t%.3f\n", tmp_gamma)
+
+    f(b) = abs(
+        ( Function.Q( Function.P(b) ) - Function.P(b) + 6 * MASS ) / ( 4 * MASS * Function.P(b) )
+        * Elliptic.Jacobi.sn(
+            (
+                tmp_gamma * sqrt( Function.Q( Function.P(b) ) / Function.P(b) ) / 2
+                + Elliptic.F(
+                    Function.zeta_inf( Function.P(b) ),
+                    Function.m( Function.P(b) )
+                )
+            ),
+            Function.m( Function.P(b) )
+        ) ^ 2
+        - ( Function.Q( Function.P(b) ) - Function.P(b) + 2 * MASS ) / ( 4 * MASS * Function.P(b) )
+        - 1 / disk_partial.r
+    )
+
+    # 高速な計算ができる。使用する時は abs をつける
+    res = optimize(f, 3 * MASS, 40 * MASS)
+    b = Optim.minimizer(res)
+
+    return Struct.ImageParticle(b, Function.alpha(disk_partial.phi))
+end
+
+
+function calc_disk_image_n(disk_partial, n=1)
+    """
+    光を発する降着円盤における微小粒子が一周して写真板に写す像の位置を計算する
+    """
+    tmp_gamma = Function.gamma(disk_partial.phi)
+
+    # f = P -> begin
+    #     value = sqrt((Function.Q(P) - P + 2 * MASS + (4 * MASS * P / disk_partial.r)) / (Function.Q(P) - P + 6 * MASS))
+    #     if !(1 >= value >= -1)
+    #         return 1e10
+    #     else
+    #         term_elliptic = 2 * sqrt(P / Function.Q(P)) * (
+    #             2 * Elliptic.K(sqrt(Function.m(P)))
+    #             - Elliptic.F(Function.zeta_inf(P), Function.m(P))
+    #             - Elliptic.F(Function.zeta_r(P, disk_partial.r), Function.m(P))
+    #         )
+    #         return abs(tmp_gamma - 2 * pi * n + term_elliptic)
+    #     end
+    # end
+
+    # f(P) = abs(
+    #     ( Function.Q(P) - P + 2 * MASS + ( 4 * MASS * P / disk_partial.r ) )/( Function.Q(P) - P + 6 * MASS )
+    #     - Elliptic.Jacobi.sn(
+    #         2 * Elliptic.K( Function.m(P) )
+    #         - Elliptic.F( Function.zeta_inf(P), Function.m(P) )
+    #         + 1 / 2 * sqrt( Function.Q(P) / P ) * ( tmp_gamma - 2 * pi * n ),
+    #         Function.m(P)
+    #     ) ^ 2
+    # )
 
     f(P) = abs(
-        (Function.Q(P) - P + 6 * MASS) / (4 * MASS * P)
+        ( Function.Q(P) - P + 6 * MASS )/( 4 * MASS * P )
         * Elliptic.Jacobi.sn(
-            tmp_gamma * sqrt(Function.Q(P) / P) / 2
-            + Elliptic.F(
-                Function.zeta(P),
-                Function.m(P)
-                ),
+            2 * Elliptic.K( Function.m(P) )
+            - Elliptic.F( Function.zeta_inf(P), Function.m(P) )
+            + 1 / 2 * sqrt( Function.Q(P) / P ) * ( tmp_gamma - 2 * pi * n ),
             Function.m(P)
         ) ^ 2
-        - (Function.Q(P) - P + 2 * MASS) / (4 * MASS * P)
+        - ( Function.Q(P) - P + 2 * MASS )/( 4 * MASS * P )
         - 1 / disk_partial.r
     )
 
@@ -58,8 +110,24 @@ function caluculate_disk_image(disk_partial)
     res = optimize(f, 3 * MASS, 40 * MASS)
     P = Optim.minimizer(res)
 
-    @printf("P:\t%.3f\t", P)
     return Struct.ImageParticle(Function.b(P), Function.alpha(disk_partial.phi))
+end
+
+
+function plot_graph(plt, polar_r, polar_theta, color)
+    """
+    極座標系のデータを直交座標系に変換して描画する
+    """
+    # 左右対称の描画
+    for sign in [-1, 1]  # 符号を反転して左右対称に
+        x = [sign * r * sin(theta) for (r, theta) in zip(polar_r, polar_theta)]
+        y = [-r * cos(theta) for (r, theta) in zip(polar_r, polar_theta)]
+        plot!(plt, x, y, color=color)
+    end
+    x = [ - polar_r[end] * sin(polar_theta[end]), polar_r[end] * sin(polar_theta[end])]
+    y = [ - polar_r[end] * cos(polar_theta[end]), - polar_r[end] * cos(polar_theta[end])]
+    plot!(plt, x, y, color=color)
+    return plt
 end
 
 
@@ -67,29 +135,36 @@ function main(plt, r, color)
     """
     グラフを描画する
     """
-    polar_b = []
-    polar_alpha = []
+    polar_b_00 = []
+    polar_alpha_00 = []
 
     diff = 0.001
     for phi in 0:diff:pi
         local disk_partial = Struct.DiskParticle(r, phi)
-        local image_partial = caluculate_disk_image(disk_partial)
+        local image_partial_00 = calc_disk_image_n(disk_partial)
 
-        push!(polar_b, image_partial.b)
-        push!(polar_alpha, image_partial.alpha)
-        @printf("b:\t%.3f\t", image_partial.b)
-        @printf("alpha:\t%.3f\t", image_partial.alpha)
+        push!(polar_b_00, image_partial_00.b)
+        push!(polar_alpha_00, image_partial_00.alpha)
+
+        # output log
+        @printf("r:\t%.3f\t", r)
+        @printf("phi:\t%.3f\t", phi)
+        @printf("b:\t%.3f\t", image_partial_00.b)
+        @printf("alpha:\t%.3f\t", image_partial_00.alpha)
+        @printf("\n")
     end
 
     # 左右対称の描画
-    for sign in [-1, 1]  # 符号を反転して左右対称に
-        x = [sign * b * sin(alpha) for (b, alpha) in zip(polar_b, polar_alpha)]
-        y = [-b * cos(alpha) for (b, alpha) in zip(polar_b, polar_alpha)]
-        plot!(plt, x, y, color=color)
-    end
-    x = [ - polar_b[end] * sin(polar_alpha[end]), polar_b[end] * sin(polar_alpha[end])]
-    y = [ - polar_b[end] * cos(polar_alpha[end]), - polar_b[end] * cos(polar_alpha[end])]
-    plot!(plt, x, y, color=color)
+    # for sign in [-1, 1]  # 符号を反転して左右対称に
+    #     x = [sign * b * sin(alpha) for (b, alpha) in zip(polar_b_00, polar_alpha_00)]
+    #     y = [-b * cos(alpha) for (b, alpha) in zip(polar_b_00, polar_alpha_00)]
+    #     plot!(plt, x, y, color=color)
+    # end
+    # x = [ - polar_b_00[end] * sin(polar_alpha_00[end]), polar_b_00[end] * sin(polar_alpha_00[end])]
+    # y = [ - polar_b_00[end] * cos(polar_alpha_00[end]), - polar_b_00[end] * cos(polar_alpha_00[end])]
+    # plot!(plt, x, y, color=color)
+    # return plt
+    plt = plot_graph(plt, polar_b_00, polar_alpha_00, color)
     return plt
 end
 
