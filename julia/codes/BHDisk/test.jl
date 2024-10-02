@@ -1,22 +1,57 @@
-# 複素数値に対する楕円積分と逆関数を計算する関数
-using SpecialFunctions
+# include("./structs.jl")
+# include("./functions.jl")
+# include("./constants.jl")
 
-# 複素数値に対する楕円積分を計算する関数
-function calculate_elliptic_and_inverse(z::ComplexF64, m::Float64)
-    # 楕円積分 F(z, m) を計算
-    elliptic_f = elliptic_k(m) * z
+# # module
+# import Main.Struct
+# import Main.Function
+# import Main.Constant
 
-    # 楕円積分の逆関数（近似）
-    # Jacobi elliptic functions の逆関数の一部として Jacobi sn 関数を使う
-    elliptic_inverse = ellipkinc(real(z), m) + 1im * ellipkinc(imag(z), m)
+# # library
+# import Elliptic
+# import Elliptic.Jacobi
 
-    return elliptic_f, elliptic
-end
+# # using library
+# using Optim
+# using Printf
+# using Plots
+# using Formatting
 
-# 例
-z = 0.5 + 0.5im   # 複素数の引数
-m = 0.5           # 楕円のパラメータ
-elliptic_f, elliptic_inverse = calculate_elliptic_and_inverse(z, m)
+# # initialize
+# THETA = Constant.THETA
+# MASS = Constant.MASS
 
-println("楕円積分の値: ", elliptic_f)
-println("楕円積分の逆関数の値: ", elliptic_inverse)
+
+# tmp_gamma = Function.gamma(2.138)
+# n = 1
+# f(P) = 10 * abs(
+#     ( Function.Q(P) - P + 6 * MASS )/( 4 * MASS * P )
+#     * Elliptic.Jacobi.sn(
+#         2 * Elliptic.K( Function.m(P) )
+#         - Elliptic.F(
+#             Function.zeta_inf(P),
+#             Function.m(P)
+#         )
+#         - sqrt( Function.Q(P) / P ) * ( pi * n - tmp_gamma/ 2 ),
+#         Function.m(P)
+#     ) ^ 2
+#     - ( Function.Q(P) - P + 2 * MASS )/( 4 * MASS * P )
+#     - 1 / 30
+# )
+
+# x = []
+# y = []
+# for i in 3:0.01:45
+#     push!(x, i)
+#     push!(y, f(i))
+# end
+# plt = plot(
+#     xlim=(3, 40), ylim=(-1, 2),
+#     legend=false,
+#     dpi=800, # 解像度を指定
+# )
+# print(f(39.999998891727195))
+# plot!(plt, x, y)
+# plt
+a = [1, 2]
+print(a[1])
