@@ -6,8 +6,16 @@
 [2024/05 ~ 2024/08](./tex/summary/2024_05/2024_05.pdf)  
 [2024/08 ~ 2024/00](./tex/summary/2024_08/2024_08.pdf)  
 
-卒業提出  
-[graduation thesis](./tex/graduationThesis/graduation.pdf)  
+卒業論文  
+[卒業論文](./tex/graduation/graduation.pdf)  
+
+## 論文  
+
+* Jean-Pierre Luminet  
+Image of a spherical black hole with thin accretion disk  
+
+* Takahisa Igata  
+Periapsis shifts in dark matter distribution with a dense core  
 
 ## 参考文献
 
@@ -30,12 +38,5 @@ General Relativity
 [中性子星とその観測](https://ea.c.u-tokyo.ac.jp/astro/Members/shibata/kougi7.pdf)  
 [重力波](https://ea.c.u-tokyo.ac.jp/astro/Members/shibata/kougi9.pdf)  
 
-### ブラックホール関連  
-
 * Gerard ’t Hooft  
 [INTRODUCTION TO THE THEORY OF BLACK HOLES](https://webspace.science.uu.nl/~hooft101/lectures/blackholes/BH_lecturenotes.pdf)  
-
-### 論文  
-
-* Jean-Pierre Luminet  
-Image of a spherical black hole with thin accretion disk  
