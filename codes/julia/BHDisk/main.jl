@@ -91,7 +91,7 @@ function calc_disk_image(disk_partial)
     # 高速な計算ができる。使用する時は abs をつける
     # res = optimize(g, 0 * MASS, 40 * MASS)
     # b = Optim.minimizer(res)
-    b = find_zero(g, 0 * MASS, 40 * MASS)
+    b = search_zero(g, 0 * MASS, 30 * MASS)
     # res = optimize(f, 3 * MASS, 30 * MASS)
     # P = Optim.minimizer(res)
 
@@ -235,4 +235,4 @@ for (color_list, distance) in zip(color_inner_list, distance_list)
     global plt = main(plt, distance * MASS, color_list)
 end
 
-savefig(plt, format("./images/{:2.0d}.png", Constant.DEGREE))
+savefig(plt, format("./images/test{:2.0d}.png", Constant.DEGREE))
