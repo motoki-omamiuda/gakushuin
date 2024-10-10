@@ -24,7 +24,7 @@ function search_zero(f, min, max)
     """
     tmp_max = 1e10
     rtv = 0
-    for i in min:0.05:max
+    for i in min:0.01:max
         if f(i) < tmp_max
             tmp_max = f(i)
             rtv = i
