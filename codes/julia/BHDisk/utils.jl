@@ -11,7 +11,6 @@ using .Equas: P, Q, m, zeta_inf, gamma, alpha, b
 # library
 using Elliptic
 using Elliptic.Jacobi
-
 using Plots
 
 using PyCall
@@ -24,7 +23,7 @@ function search_zero(f, min, max)
     """
     tmp_max = 1e10
     rtv = 0
-    for i in min:0.01:max
+    for i in min:0.025:max
         if f(i) < tmp_max
             tmp_max = f(i)
             rtv = i
@@ -46,7 +45,9 @@ function func_0(b, r, phi)
 
     term1 = (q_val - p_val + 6 * MASS) / (4 * MASS * p_val)
     term2 = (q_val - p_val + 2 * MASS) / (4 * MASS * p_val)
-    return abs(term1 * ellipfun ^ 2 - term2 - 1 / r)
+    rtv = term1 * ellipfun ^ 2 - term2 - 1 / r
+    print(rtv)
+    return abs(rtv)
 end
 
 
