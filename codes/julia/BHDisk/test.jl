@@ -68,23 +68,22 @@ r = 2 * MASS
 #     print(b_val, "\n")
 # end
 
-f = b_val -> func_0(b_val, r, 0.05)
-b_val = binary_search_zero(f, 0.01 * MASS, 40 * MASS)
-print(b_val, "\n")
+# f = b_val -> func_0(b_val, r, 0.9670226748363228)
+# b_val = binary_search_zero(f, 0.01 * MASS, 40 * MASS)
+# print(b_val, "\n")
 
-# phi = 0.05
-# plt = plot(
-#     xlim=(0, 35), ylim=(-35, 35),
-#     legend=false,
-#     ratio=1, # アスペクト比を指定
-#     dpi=800, # 解像度を指定
-# )
-# x_list = []
-# y_list = []
-# for i in 0.01:40
-#     push!(x_list, i)
-#     print(func_0(i * MASS, r, phi))
-#     push!(y_list, func_0(i * MASS, r, phi))
-# end
-# plot!(plt, x_list, y_list)
-# plt
+phi = 0.9670226748363228
+plt = plot(
+    xlim=(0, 35), ylim=(-0.5, 0.5),
+    legend=false,
+    dpi=800, # 解像度を指定
+)
+x_list = []
+y_list = []
+for i in 0.01:40
+    push!(x_list, i)
+    print(func_0(i * MASS, r, phi))
+    push!(y_list, func_0(i * MASS, r, phi))
+end
+plot!(plt, x_list, y_list)
+plt

@@ -44,7 +44,7 @@ function main()
     phi_list = []
     phi = 0.0
     while phi <= pi
-        # phi_diff = 1 / 10 ^ ((1 + cos(phi) ^ 2) * 0.05) # 一瞬で終わらせたい場合
+        # phi_diff = 1 / 10 ^ ((1 + cos(phi) ^ 2) * 0.5) # 一瞬で終わらせたい場合
         phi_diff = 1 / 10 ^ ((1 + cos(phi) ^ 2) * 1.5)
         phi += phi_diff
         push!(phi_list, phi)
@@ -55,9 +55,11 @@ function main()
         alpha_list = []
         for phi in phi_list
             b_val, alpha_val = calc_disk_image(r, phi, n)
-            push!(b_list, b_val)
-            push!(alpha_list, alpha_val)
-            println("phi: ", phi, " b: ", b_val, " alpha: ", alpha_val)
+            if !isnan(b_val)
+                push!(b_list, b_val)
+                push!(alpha_list, alpha_val)
+                println("r: ", r,  " phi: ", phi, " b: ", b_val, " alpha: ", alpha_val)
+            end
         end
 
         # make directory
