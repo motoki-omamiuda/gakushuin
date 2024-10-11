@@ -33,6 +33,24 @@ function search_zero(f, min, max)
 end
 
 
+function binary_search_zero(func, left, right)
+    global av
+    av = 0
+    for i in 0:100
+        global av = (left + right) / 2
+        if abs(func(av)) < 1.0e-3
+            return av
+        end
+        if func(left) * func(av) < 0
+            right = av
+        else
+            left = av
+        end
+    end
+    return av
+end
+
+
 function func_0(b, r, phi)
     p_val = P(b)
     q_val = Q(p_val)
@@ -46,8 +64,9 @@ function func_0(b, r, phi)
     term1 = (q_val - p_val + 6 * MASS) / (4 * MASS * p_val)
     term2 = (q_val - p_val + 2 * MASS) / (4 * MASS * p_val)
     rtv = term1 * ellipfun ^ 2 - term2 - 1 / r
-    print(rtv)
-    return abs(rtv)
+    # print(rtv)
+    # return abs(rtv)
+    return real(rtv)
 end
 
 
@@ -73,7 +92,8 @@ function calc_disk_image(r, phi, n=0)
     alpha_val = alpha(phi)
     if n == 0
         f = b -> func_0(b, r, phi)
-        b_val = search_zero(f, 0 * MASS, 40 * MASS)
+        # b_val = search_zero(f, 0 * MASS, 40 * MASS)
+        b_val = binary_search_zero(f, 0.01 * MASS, 40 * MASS)
     else
         f = p -> func_n(p, r, phi, n)
         p_val = search_zero(f, 3 * MASS, 40 * MASS)
@@ -104,7 +124,7 @@ function plot_disk_image(plt, r_list, theta_list, color, reverse=false)
 end
 
 
-function output_csv(path, b_list, alpha_list)
+function write_csv(path, b_list, alpha_list)
     """
     データをcsvファイルに出力する
     """
@@ -117,6 +137,19 @@ function output_csv(path, b_list, alpha_list)
 end
 
 
-export calc_disk_image, plot_disk_image, output_csv
+function read_csv(path)
+    lines = readlines(path)
+    split(strip(lines[1]), ",") # delete header
+    b_list = []
+    alpha_list = []
+    for line in lines[2:end]
+        push!(b_list, parse(Float64, split(strip(line), ",")[1]))
+        push!(alpha_list, parse(Float64, split(strip(line), ",")[2]))
+    end
+    return b_list, alpha_list
+end
+
+
+export calc_disk_image, plot_disk_image, read_csv, write_csv
 
 end

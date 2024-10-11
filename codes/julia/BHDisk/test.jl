@@ -12,7 +12,6 @@ include("./equas.jl")
 using .Consts: MASS
 using .Equas: P, Q, m, zeta_inf, gamma, alpha, b
 
-
 # library
 using Elliptic
 using Elliptic.Jacobi
@@ -34,29 +33,58 @@ function func_0(b, r, phi)
 
     term1 = (q_val - p_val + 6 * MASS) / (4 * MASS * p_val)
     term2 = (q_val - p_val + 2 * MASS) / (4 * MASS * p_val)
-    return abs(term1 * ellipfun ^ 2 - term2 - 1 / r)
+    return real(term1 * ellipfun ^ 2 - term2 - 1 / r)::Float64
+end
+
+function binary_search_zero(func, left, right)
+    global av
+    av = 0
+    for i in 0:50
+        # log
+        print("left: ", left, "\t")
+        print("func(left): ", func(left), "\n")
+        print("right: ", right, "\t")
+        print("func(right): ", func(right), "\n")
+        global av = (left + right) / 2
+        if abs(func(av)) < 1.0e-3
+            return av
+        end
+        if func(left) * func(av) < 0
+            right = av
+        else
+            left = av
+        end
+    end
+    return av
 end
 
 
 r = 2 * MASS
-phi = 0.001
 
-f = b -> func_0(b, r, phi)
+# for i in 0:0.01:pi
+#     f = b_val -> func_0(b_val, r, i)
+#     b_val = binary_search_zero(f, 0.01 * MASS, 40 * MASS)
+#     print(i, "\t")
+#     print(b_val, "\n")
+# end
 
-global left, right
+f = b_val -> func_0(b_val, r, 0.05)
+b_val = binary_search_zero(f, 0.01 * MASS, 40 * MASS)
+print(b_val, "\n")
 
-left = 0 * MASS
-right = 40 * MASS
-
-for i in 0:100
-    av = (left + right) / 2
-    println("$i : $left, $right : $(f(av))")
-    if abs(f(av)) < 1.0e-8
-        break
-    end
-    if f(left) * f(av) < 0
-        global right = av
-    else
-        global left = av
-    end
-end
+# phi = 0.05
+# plt = plot(
+#     xlim=(0, 35), ylim=(-35, 35),
+#     legend=false,
+#     ratio=1, # アスペクト比を指定
+#     dpi=800, # 解像度を指定
+# )
+# x_list = []
+# y_list = []
+# for i in 0.01:40
+#     push!(x_list, i)
+#     print(func_0(i * MASS, r, phi))
+#     push!(y_list, func_0(i * MASS, r, phi))
+# end
+# plot!(plt, x_list, y_list)
+# plt

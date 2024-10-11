@@ -4,7 +4,7 @@ include("./utils.jl")
 
 # module
 using .Consts: MASS, DEGREE
-using .Utils: calc_disk_image, plot_disk_image, output_csv
+using .Utils: calc_disk_image, plot_disk_image, write_csv
 using .Equas: alpha
 
 # library
@@ -45,7 +45,7 @@ function main()
     phi = 0.0
     while phi <= pi
         # phi_diff = 1 / 10 ^ ((1 + cos(phi) ^ 2) * 0.05) # 一瞬で終わらせたい場合
-        phi_diff = 1 / 10 ^ ((1 + cos(phi) ^ 2) * 1)
+        phi_diff = 1 / 10 ^ ((1 + cos(phi) ^ 2) * 1.5)
         phi += phi_diff
         push!(phi_list, phi)
     end
@@ -68,7 +68,7 @@ function main()
 
         # output csv
         path = format("./datas/{:d}/{:d}M_{:d}.txt", DEGREE, r / MASS, n)
-        output_csv(path, b_list, alpha_list)
+        write_csv(path, b_list, alpha_list)
 
         # plot
         plot_disk_image(plt, b_list, alpha_list, :green)

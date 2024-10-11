@@ -1,23 +1,10 @@
 # module
 using .Consts: MASS
-using .Utils: plot_disk_image
+using .Utils: plot_disk_image, read_csv
 
 # library
 using Formatting
 using Plots
-
-
-function read_csv(path)
-    lines = readlines(path)
-    split(strip(lines[1]), ",") # delete header
-    b_list = []
-    alpha_list = []
-    for line in lines[2:end]
-        push!(b_list, parse(Float64, split(strip(line), ",")[1]))
-        push!(alpha_list, parse(Float64, split(strip(line), ",")[2]))
-    end
-    return b_list, alpha_list
-end
 
 
 DEG = 89
