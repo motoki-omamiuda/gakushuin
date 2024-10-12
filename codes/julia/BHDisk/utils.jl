@@ -77,7 +77,7 @@ function calc_disk_image(r, phi, n=0)
     else
         f = p -> func_n(p, r, phi, n)
         p_val = search_zero(f, 3 * MASS, 40 * MASS)
-        b_val = b(P_val)
+        b_val = b(p_val)
     end
     return b_val, alpha_val
 end
@@ -87,6 +87,11 @@ function plot_disk_image(plt, r_list, theta_list, color, reverse=false)
     """
     極座標系のデータを直交座標系に変換して描画する
     """
+    y_sign = reverse ? 1 : -1
+    x = [-r_list[1] * sin(theta_list[1]), r_list[1] * sin(theta_list[1])]
+    y = [y_sign * r_list[1] * cos(theta_list[1]), y_sign * r_list[1] * cos(theta_list[1])]
+    plot!(plt, x, y, color=color)
+
     # 左右対称の描画
     for sign in [-1, 1]  # 符号を反転して左右対称に
         y_sign = reverse ? 1 : -1

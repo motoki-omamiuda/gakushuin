@@ -39,7 +39,7 @@ end
 function main()
 
     r_list = [2, 6, 10, 20, 30].* MASS
-    n = 0
+    n = 1
 
     phi_list = []
     phi = 0.0

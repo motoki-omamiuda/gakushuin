@@ -2,11 +2,11 @@
 
 ## LaTeX
 
-勉強したことのまとめ  
+* 勉強したことのまとめ  
 [2024/05 ~ 2024/08](./tex/summary/2024_05/2024_05.pdf)  
 [2024/08 ~ 2024/00](./tex/summary/2024_08/2024_08.pdf)  
 
-卒業論文  
+* 卒業論文  
 [卒業論文](./tex/graduation/graduation.pdf)  
 
 ## 論文  
@@ -18,8 +18,6 @@ Image of a spherical black hole with thin accretion disk
 Periapsis shifts in dark matter distribution with a dense core  
 
 ## 参考文献
-
-### 一般相対論
 
 * 佐々木 節  
 一般相対論
