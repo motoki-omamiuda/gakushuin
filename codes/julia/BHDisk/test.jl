@@ -10,7 +10,7 @@ include("./equas.jl")
 
 # module
 using .Consts: MASS
-using .Equas: P, Q, m, zeta_inf, gamma, alpha, b
+using .Equas: P, Q, m, zeta_inf, gamma, alpha, b, zeta_r
 
 # library
 using Elliptic
@@ -21,69 +21,41 @@ using Plots
 using PyCall
 mp = pyimport("mpmath")
 
-function func_0(b, r, phi)
-    p_val = P(b)
+function func_n(p_val, r, phi, n)
     q_val = Q(p_val)
     zeta_inf_val = zeta_inf(p_val)
     m_val = m(p_val)
 
-    ellipf = @pycall mp.ellipf(zeta_inf_val, m_val)::Complex{Float64}
-    inner = gamma(phi) * sqrt(q_val / p_val) / 2 + ellipf
-    ellipfun = @pycall mp.ellipfun("sn", inner, m_val)::Complex{Float64}
+    ellipf = F(zeta_inf_val, m_val)
+    inner = 2 * K(m_val) - ellipf - (1 / 2) * sqrt(q_val / p_val) * (2 * pi * n - gamma(phi))
+    ellipfun = sn(inner, m_val)
+    return ellipfun
 
-    term1 = (q_val - p_val + 6 * MASS) / (4 * MASS * p_val)
-    term2 = (q_val - p_val + 2 * MASS) / (4 * MASS * p_val)
-    return real(term1 * ellipfun ^ 2 - term2 - 1 / r)::Float64
+    # term1 = (q_val - p_val + 6 * MASS) / (4 * MASS * p_val)
+    # term2 = (q_val - p_val + 2 * MASS) / (4 * MASS * p_val)
+    # return (term1 * ellipfun ^ 2 - term2 - 1 / r)
 end
 
-function binary_search_zero(func, left, right)
-    global av
-    av = 0
-    for i in 0:50
-        # log
-        print("left: ", left, "\t")
-        print("func(left): ", func(left), "\n")
-        print("right: ", right, "\t")
-        print("func(right): ", func(right), "\n")
-        global av = (left + right) / 2
-        if abs(func(av)) < 1.0e-3
-            return av
-        end
-        if func(left) * func(av) < 0
-            right = av
-        else
-            left = av
-        end
-    end
-    return av
-end
+r =6 * MASS
+phi = 0
 
-
-r = 2 * MASS
-
-# for i in 0:0.01:pi
-#     f = b_val -> func_0(b_val, r, i)
-#     b_val = binary_search_zero(f, 0.01 * MASS, 40 * MASS)
-#     print(i, "\t")
-#     print(b_val, "\n")
-# end
-
-# f = b_val -> func_0(b_val, r, 0.9670226748363228)
-# b_val = binary_search_zero(f, 0.01 * MASS, 40 * MASS)
-# print(b_val, "\n")
-
-phi = 0.9670226748363228
 plt = plot(
-    xlim=(0, 35), ylim=(-0.5, 0.5),
+    # xlim=(3, 10), ylim=(-0.5, 0.5),
+
     legend=false,
     dpi=800, # 解像度を指定
 )
 x_list = []
 y_list = []
-for i in 0.01:40
-    push!(x_list, i)
-    print(func_0(i * MASS, r, phi))
-    push!(y_list, func_0(i * MASS, r, phi))
+
+for i in 3:0.01:10
+    push!(x_list, b(i))
+    print(func_n(i * MASS, r, phi, 3))
+    # push!(y_list, gamma(phi))
+    # push!(y_list, zeta_inf(i * MASS))
+    # push!(y_list, K(m(i)))
+    push!(y_list, func_n(i * MASS, r, phi, 3))
+    # push!(y_list, func_n(i * MASS, r, phi, 3))
 end
 plot!(plt, x_list, y_list)
 plt

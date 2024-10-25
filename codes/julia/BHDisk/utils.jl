@@ -123,6 +123,9 @@ end
 
 
 function read_csv(path)
+    """
+    csvファイルを読み込む
+    """
     lines = readlines(path)
     split(strip(lines[1]), ",") # delete header
     b_list = []
