@@ -7,7 +7,8 @@
 [2024/08 ~ 2024/00](./tex/summary/2024_08/2024_08.pdf)  
 
 * 卒業論文  
-[卒業論文](./tex/graduation/graduation.pdf)  
+[卒業論文（原案）](./tex/graduation/draft/graduation.pdf)  
+[卒業論文（清書）](./tex/graduation/fair_copy/graduation.pdf)  
 
 ## 論文  
 
