@@ -16,7 +16,7 @@
 \usepackage{color} % 文字の色を指定するため
 
 
-\title{超大質量天体に落下する星の光学的出現}
+\title{超大質量天体を周る星の光学的出現}
 \author{大豆生田 幹}
 \date{}
 
@@ -123,14 +123,18 @@
 と書くことができる。この$g_{ij}$を「計量」と呼び、これがまさに時空を定義する量である。座標変換$(x^0, x^1, x^2, x^3) \rightarrow (\bar{x}^0, \bar{x}^1, \bar{x}^2, \bar{x}^3)$を考えると、線素は座標変換に対して不変なので
 \begin{equation*}
 \begin{split}
-	ds^2 &= g_{ij} dx^i dx^j \\
-	&= \bar{g}_{kl} d \bar{x}^k d \bar{x}^l\\
-	&= \bar{g}_{kl} \left( \frac{\partial \bar{x}^k}{\partial x^i} dx^i \right) \left( \frac{\partial \bar{x}^l}{\partial x^j} dx^j \right)
+	ds^2 
+		&= g_{ij} dx^i dx^j \\
+		&= \bar{g}_{kl} d \bar{x}^k d \bar{x}^l\\
+		&= \bar{g}_{kl} \left( \frac{\partial \bar{x}^k}{\partial x^i} dx^i \right)\left( \frac{\partial \bar{x}^l}{\partial x^j} dx^j \right)
 \end{split}
 \end{equation*}
 よって、以下のことがわかる。
 \begin{tcolorbox}[title=計量$g_{ij}$の変換則]
-	\[ \bar{g}_{kl} \frac{\partial \bar{x}^k}{\partial x^i} \frac{\partial \bar{x}^l}{\partial x^j} = g_{ij} \]
+\[
+\bar{g}_{kl} \frac{\partial \bar{x}^k}{\partial x^i} \frac{\partial \bar{x}^l}{\partial x^j} 
+= g_{ij}
+\]
 \end{tcolorbox}
 変換則より、計量$g_{ij}$は2階の共変テンソルとわかる。$g_{ij}$の逆行列$g^{ij} = (g^{-1})_{ij}$を考えると
 \begin{equation*}
@@ -141,7 +145,10 @@
 \end{equation*}
 この整合性$I = I$を考えると
 \begin{tcolorbox}[title=計量$g^{ij}$の変換則]
-	\[ \bar{g}^{kl} \frac{\partial x^i}{\partial \bar{x}^k} \frac{\partial x^j}{\partial \bar{x}^l} = g^{ij} \]
+\[
+\bar{g}^{kl} \frac{\partial x^i}{\partial \bar{x}^k} \frac{\partial x^j}{\partial \bar{x}^l} 
+= g^{ij}
+\]
 \end{tcolorbox}
 変換則より、計量$g^{ij}$は2階の反変テンソルとわかる。
 
@@ -153,7 +160,9 @@
 % =================================
 \section{内積}
 任意の2つのベクトル$\vec{A}, \vec{B}$それぞれの成分$A^i, B^i$とおいて、一般の曲がった次元での内積は
-\[ \vec{A} \cdot \vec{B} = g_{ij} A^i B^j \]
+\[
+\vec{A} \cdot \vec{B} = g_{ij} A^i B^j
+\]
 と定義する。
 
 
@@ -162,7 +171,9 @@
 % =================================
 \section{並行移動}
 曲がった時空上でベクトルの並行移動を考える。ある点$x$のベクトル$A^i(x)$を微小変位$\delta x$だけ離れた$x + \delta x $に並行移動したベクトル$A^i_{/\!/}(x + \delta x)$を以下のように書くことにする。
-\[ A^i_{/\!/}(x + \delta x) = A^i(x) - \tensor{\Gamma}{^i_{jk}}(x) A^j(x) \delta x^k \]
+\[
+A^i_{/\!/}(x + \delta x) = A^i(x) - \tensor{\Gamma}{^i_{jk}}(x) A^j(x) \delta x^k
+\]
 ここで導入した$\tensor{\Gamma}{^i_{jk}}(x)$を接続とよび、この量を適切に定義することでベクトルの並行移動を定義する。
 \begin{figure}[H]
     \centering
@@ -171,21 +182,53 @@
     \label{}
 \end{figure}
 並行移動が満たすべき条件は2つ考えられる。
-\begin{enumerate}[(1)\,]
-\item{並行移動によって任意の2つのベクトルの内積が保たれる}\\
-この条件により
+\begin{tcolorbox}[title=条件(1)：並行移動によって任意の2つのベクトルの内積が保たれる]
+\begin{eqnarray*}
+	g_{ij}(x) A^i (x) B^j (x) = g_{ij}(x + \delta x) A^i_{/\!/} (x + \delta x) B^j_{/\!/} (x + \delta x)
+\end{eqnarray*}
+
+\end{tcolorbox}
+\begin{tcolorbox}[title=条件(2)：並行移動によって任意の2つのベクトルにねじれが生じない]
+\begin{eqnarray*}
+	\tensor{\Gamma}{^i_{[jk]}}(x) = 0
+\end{eqnarray*}
+\end{tcolorbox}
+条件(1)から
 \begin{equation*}
 \begin{split}
-	g_{ij}(x) A^i (x) B^j (x) &= g_{ij}(x + \delta x) A^i_{/\!/} (x + \delta x) B^j_{/\!/} (x + \delta x)\\
-	&= \left
-	
+	g_{ij}A^iB^j 
+		&= g_{ij}A^iB^j
+		+ \left( \frac{\partial g_{ij}}{\partial x^k}
+		- g_{lj}\tensor{\Gamma}{^l_{ik}}
+		- g_{il} \tensor{\Gamma}{^l_{jk}} \right) A^i B^j \delta x^k
+		+ \mathrm{ O } \left( (\delta x)^2 \right)\\
+	0 
+		&= \frac{\partial g_{ij}}{\partial x^k}
+		- g_{lj} \tensor{\Gamma}{^l_{ik}}
+		- g_{il} \tensor{\Gamma}{^l_{jk}}
 \end{split}
 \end{equation*}
-\item{並行移動によって任意の2つのベクトルにねじれが生じない}
-\end{enumerate}
-
-
-\[ \tensor{\Gamma}{^i_{[jk]}} = 0 \]
+添え字を入れ替えて作った3つの式を連立して
+\begin{equation*}
+\begin{split}
+	0 &=	\frac{\partial g_{ij}}{\partial x^k}
+		- g_{lj} \tensor{\Gamma}{^l_{ik}}
+		- g_{il} \tensor{\Gamma}{^l_{jk}}\\
+	0 &=	\frac{\partial g_{ik}}{\partial x^j}
+		- g_{lk} \tensor{\Gamma}{^l_{ij}}
+		- g_{il}  \tensor{\Gamma}{^l_{kj}}\\
+	0 &=	- \frac{\partial g_{kj}}{\partial x^i}
+		+ g_{lj} \tensor{\Gamma}{^l_{ki}}
+		+ g_{kl} \tensor{\Gamma}{^l_{ji}}\\
+\end{split}
+\end{equation*}
+条件(2)を用いると接続は以下のように導かれる。このような接続を「クリストッフェル記号」と呼ぶ。
+\begin{tcolorbox}[title=クリストッフェル記号]
+\begin{eqnarray*}
+	\tensor{\Gamma}{^i_{jk}} = \frac{1}{2} \left( \frac{\partial g_{lj}}{\partial x^k} + \frac{\partial g_{lk}}{\partial x^j} - \frac{\partial g_{jk}}{\partial x^l} \right)
+\end{eqnarray*}
+\end{tcolorbox}
+これでベクトルの並行移動が定義された。
 
 % =================================
 % 共変微分
@@ -197,6 +240,53 @@
 % 曲率
 % =================================
 \section{曲率}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\columnwidth]{./images/0108/01.png}
+    \caption{曲率}
+    \label{}
+\end{figure}
+あるベクトルを別の点まで異なる2つの経路で並行移動し、並行移動された2つのベクトルの差を測ることで「曲率」が定義できる。今回は
+\begin{enumerate}[(1)\,]
+\item{$P \rightarrow Q_1 \rightarrow R$の経路で移動させたベクトル$A^i_{/\!/}(R)$}
+\item{$P \rightarrow Q_2 \rightarrow R$の経路で移動させたベクトル$A^{'i}_{/\!/}(R)$}
+\end{enumerate}
+上記2つのベクトルの差$\delta A^i$を計算する。まずはそれぞれのベクトルを求めると
+\begin{enumerate}[(1)\,]
+\item{}
+\begin{eqnarray*}
+\begin{split}
+	A^{i}_{/\!/}(R) 
+	&= A^{i}_{/\!/}(Q_1) - \Gamma^{i}_{\;jk}(Q_1)A^{j}(Q_1)\delta_2 x^k \\ 
+	&= \left[
+		A^i - \Gamma^{i}_{\;jk}A^j( \delta_1 x^k + \delta_2 x^k )
+		- \left( \frac{\partial \Gamma^{i}_{\;jl}}{\partial x^k} 
+		- \Gamma^{i}_{\;nl}\Gamma^{n}_{\;jk} \right) A^j \delta_1 x^k \delta_2 x^l 
+	\right]_P\\
+\end{split}
+\end{eqnarray*}
+
+\item{}
+\begin{eqnarray*}
+\begin{split}
+	A'^{i}_{/\!/}(R)
+	&= A^{i}_{/\!/}(Q_2) - \Gamma^{i}_{\;jk}(Q_2)A^{j}(Q_2)\delta_2 x^k \\ 		&= \left[ 
+		A^i - \Gamma^{i}_{\;jk}A^j( \delta_1 x^k + \delta_2 x^k )
+		- \left( \frac{\partial \Gamma^{i}_{\;jl}}{\partial x^k}
+		- \Gamma^{i}_{\;nl}\Gamma^{n}_{\;jk} \right) A^j \delta_1 x^k \delta_2 x^l 
+	\right]_P
+\end{split}
+\end{eqnarray*}
+\end{enumerate}
+よって
+\begin{eqnarray*}
+\begin{split}
+	\delta A^i 
+	&= 	A'^{i}_{/\!/}(P \rightarrow Q_2 \rightarrow R)
+		- A^{i}_{/\!/}(P \rightarrow Q_1 \rightarrow R) \\
+	&= R^{i}_{\;jkl} A^j \delta_1 x^k \delta_2 x^l
+\end{split}
+\end{eqnarray*}
 
 
 % =================================

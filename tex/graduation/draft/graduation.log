@@ -1,4 +1,4 @@
-This is e-upTeX, Version 3.141592653-p4.1.1-u1.30-230214-2.6 (utf8.euc) (TeX Live 2024) (preloaded format=platex 2024.5.2)  6 SEP 2024 11:36
+This is e-upTeX, Version 3.141592653-p4.1.1-u1.30-230214-2.6 (utf8.euc) (TeX Live 2024) (preloaded format=platex 2024.5.2)  19 NOV 2024 13:53
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -739,6 +739,9 @@ LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 
 LaTeX Warning: Label `' multiply defined.
 
+
+LaTeX Warning: Label `' multiply defined.
+
 )
 \openout1 = `graduation.aux'.
 
@@ -873,11 +876,27 @@ LaTeX Font Warning: Font shape `OMS/cmsy/b/n' in size <5.5> not available
 ] [3]
 File: ./images/0106/01.png Graphic file (type bmp)
 <./images/0106/01.png>
- [4] [5]
+ [4]
+File: ./images/0108/01.png Graphic file (type bmp)
+<./images/0108/01.png>
+ [5]
+
+Package amsmath Warning: Cannot use `split' here;
+(amsmath)                trying to recover with `aligned' on input line 258.
+
+
+Package amsmath Warning: Cannot use `split' here;
+(amsmath)                trying to recover with `aligned' on input line 270.
+
+
+Package amsmath Warning: Cannot use `split' here;
+(amsmath)                trying to recover with `aligned' on input line 280.
+
+[6] [7]
 Chapter 2.
 File: ./images/0106/01.png Graphic file (type bmp)
 <./images/0106/01.png>
-[6
+[8
 
 ] (./graduation.aux)
  ***********
@@ -897,12 +916,12 @@ Package rerunfilecheck Info: File `graduation.out' has not changed.
 (rerunfilecheck)             Checksum: 98FA2D3DBC4906B121ED7338F995B7CF;1301.
  ) 
 Here is how much of TeX's memory you used:
- 23113 strings out of 474774
- 445398 string characters out of 5758802
- 1932032 words of memory out of 5000000
- 45098 multiletter control sequences out of 15000+600000
+ 23126 strings out of 474774
+ 445711 string characters out of 5758802
+ 1935032 words of memory out of 5000000
+ 45109 multiletter control sequences out of 15000+600000
  583386 words of font info for 135 fonts, out of 8000000 for 9000
  929 hyphenation exceptions out of 8191
  101i,22n,107p,466b,597s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on graduation.dvi (7 pages, 36004 bytes).
+Output written on graduation.dvi (9 pages, 47556 bytes).

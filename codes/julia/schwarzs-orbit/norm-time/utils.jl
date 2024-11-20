@@ -12,6 +12,7 @@ using .Equas: P, Q, m, zeta_inf, gamma, alpha, b
 using Elliptic
 using Elliptic.Jacobi
 using Plots
+using Formatting
 
 using PyCall
 mp = pyimport("mpmath")
@@ -65,7 +66,7 @@ function func_n(p_val, r, phi, n)
 end
 
 
-function calc_disk_image(r, phi, n=0)
+function calc_partial_image(r, phi, n=0)
     """
     降着円盤上の粒子に対応した像の位置を計算する
     """
@@ -83,7 +84,7 @@ function calc_disk_image(r, phi, n=0)
 end
 
 
-function plot_orbit_image(plt, r_list, theta_list, reverse=false)
+function plot_orbit_image(plt, b_list, alpha_list, reverse=false)
     """
     極座標系のデータを直交座標系に変換して描画する
     """
@@ -91,21 +92,21 @@ function plot_orbit_image(plt, r_list, theta_list, reverse=false)
     x_sign = 1
     x_list, y_list = [], []
 
-    for i in 1:length(r_list)
+    for i in 1:length(b_list)
         if i > 2
             # theta の増減が逆転したら符号を反転
-            before_step = theta_list[i - 1] - theta_list[i - 2]
-            now_step = theta_list[i] - theta_list[i - 1]
+            before_step = alpha_list[i - 1] - alpha_list[i - 2]
+            now_step = alpha_list[i] - alpha_list[i - 1]
             if before_step * now_step < 0
                 x_sign *= -1
             end
-            x = x_sign * r_list[i] * sin(theta_list[i])
-            y = y_sign * r_list[i] * cos(theta_list[i])
+            x = x_sign * b_list[i] * sin(alpha_list[i])
+            y = y_sign * b_list[i] * cos(alpha_list[i])
             push!(x_list, x)
             push!(y_list, y)
         else
-            x = x_sign * r_list[i] * sin(theta_list[i])
-            y = y_sign * r_list[i] * cos(theta_list[i])
+            x = x_sign * b_list[i] * sin(alpha_list[i])
+            y = y_sign * b_list[i] * cos(alpha_list[i])
             push!(x_list, x)
             push!(y_list, y)
         end
@@ -117,36 +118,54 @@ function plot_orbit_image(plt, r_list, theta_list, reverse=false)
 end
 
 
-function plot_orbit_gif(r_list, theta_list, reverse=false)
+function plot_orbit_gif(DEG, r, E, L)
     """
     極座標系のデータを直交座標系に変換して描画する
     """
-    y_sign = reverse ? 1 : -1
-    x_sign = 1
+    n_list = [0, 1]
     x_list, y_list = [], []
 
-    for i in 1:length(r_list)
-        if i > 2
-            # theta の増減が逆転したら符号を反転
-            before_step = theta_list[i - 1] - theta_list[i - 2]
-            now_step = theta_list[i] - theta_list[i - 1]
-            if before_step * now_step < 0
-                x_sign *= -1
-            end
-            x = x_sign * r_list[i] * sin(theta_list[i])
-            y = y_sign * r_list[i] * cos(theta_list[i])
-            push!(x_list, x)
-            push!(y_list, y)
+    for i in 1:length(n_list)
+        push!(x_list, [])
+        push!(y_list, [])
+
+        if n_list[i] % 2 == 0
+            global reverse = false
         else
-            x = x_sign * r_list[i] * sin(theta_list[i])
-            y = y_sign * r_list[i] * cos(theta_list[i])
-            push!(x_list, x)
-            push!(y_list, y)
+            global reverse = true
+        end
+
+        y_sign = reverse ? 1 : -1
+        x_sign = reverse ? -1 : 1
+        # x_sign = 1
+
+        local path = format("./datas/r={:.2f},E={:.2f},L={:.2f},n={:.2f}", r, E, L, n_list[i])
+        local b_list, alpha_list = read_text(path)
+
+        for j in 1:length(b_list)
+            if j > 2
+                # theta の増減が逆転したら符号を反転
+                before_step = alpha_list[j - 1] - alpha_list[j - 2]
+                now_step = alpha_list[j] - alpha_list[j - 1]
+                if before_step * now_step < 0
+                    x_sign *= -1
+                end
+                x = x_sign * b_list[j] * sin(alpha_list[j])
+                y = y_sign * b_list[j] * cos(alpha_list[j])
+                push!(x_list[i], x)
+                push!(y_list[i], y)
+            else
+                x = x_sign * b_list[i] * sin(alpha_list[j])
+                y = y_sign * b_list[i] * cos(alpha_list[j])
+                push!(x_list[i], x)
+                push!(y_list[i], y)
+            end
         end
     end
 
-    anim = @animate for i in 1:length(x_list)
-        plot(x_list[1:i], y_list[1:i], xlim=(-35, 35), ylim=(-35, 35), ratio=1, linewidth=2, dpi=600, legend=false)
+    anim = @animate for i in 1:length(x_list[1])
+        plot(x_list[1][1:i], y_list[1][1:i], xlim=(-35, 35), ylim=(-35, 35), ratio=1, linewidth=2, dpi=600, legend=false, color="#ff7f50")
+        plot!(x_list[2][1:i], y_list[2][1:i], xlim=(-35, 35), ylim=(-35, 35), ratio=1, linewidth=2, dpi=600, legend=false, color="#4169e1")
     end
 
     return anim
@@ -181,6 +200,6 @@ function read_text(path)
     return b_list, alpha_list
 end
 
-export plot_orbit_image, plot_orbit_gif ,read_text, write_text, calc_disk_image
+export plot_orbit_image, plot_orbit_gif ,read_text, write_text, calc_partial_image
 
 end

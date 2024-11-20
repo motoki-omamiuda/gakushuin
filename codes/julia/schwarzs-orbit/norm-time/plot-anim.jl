@@ -3,7 +3,7 @@ include("utils.jl")
 
 # module
 using .Consts: MASS
-using .Utils: plot_orbit_gif, read_text
+using .Utils: plot_orbit_gif
 
 # library
 using Formatting
@@ -14,21 +14,12 @@ function output()
     if !isdir(dir_path)
         mkdir(dir_path)
     end
-    gif(anim,  format("./gifs/{:d}/r={:d},E={:d},L={:d}.gif",DEG, r, E, L), fps=120)
+    gif(anim,  format("./gifs/{:d}/r={:.2f},E={:.2f},L={:.2f}.gif", DEG, r, E, L), fps=120)
 end
 
 DEG = 80
-n_list = [0, 1]
-r, E, L = 13.0, 1.00, 4.0
+# r, E, L = 12.0, 0.964, 4.0
+r, E, L = 200.0, 1.1, 4.0
 
-for i in 1:length(n_list)
-    local path = format("./datas/{:d}/r={:d},E={:d},L={:d},n={:d}.txt",DEG, r, E, L, n_list[i])
-    local b_list, alpha_list = read_text(path)
-    if n_list[i] % 2 == 0
-        global anim = plot_orbit_gif(b_list, alpha_list, false)
-    # else
-    #     global anim = plot_orbit_gif(b_list, alpha_list, true)
-    end
-end
-
+global anim = plot_orbit_gif(DEG, r, E, L)
 output()
