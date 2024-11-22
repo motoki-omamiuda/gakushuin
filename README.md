@@ -2,15 +2,21 @@
 
 ## LaTeX
 
-* 勉強したことのまとめ  
-[2024/05 ~ 2024/08](./tex/summary/2024_05/2024_05.pdf)  
-[2024/08 ~ 2024/00](./tex/summary/2024_08/2024_08.pdf)  
+* 第一回発表（理論研夏ゼミ）  
+[*資料*](./docs/夏ゼミ発表.pdf)
 
-* 卒業文章  
-[卒業論文（原案）](./tex/graduation/draft/graduation.pdf)  
-[卒業論文（清書）](./tex/graduation/fair_copy/graduation.pdf)  
+* 第二回発表（大輪講）  
+[*作成中*](./)
 
-## 論文  
+* 第三回発表（最終発表）  
+[*作成中*](./)
+
+* まとめ資料  
+[*作成中*](./)
+
+## 参考文献
+
+### 論文  
 
 * Jean-Pierre Luminet  
 *Image of a spherical black hole with thin accretion disk*  
@@ -18,13 +24,16 @@
 * Takahisa Igata  
 *Periapsis shifts in dark matter distribution with a dense core*  
 
-## 参考文献
+
+### 書籍  
 
 * 佐々木 節  
 *一般相対論*  
 
 * Robert M. Wald  
 *General Relativity*  
+
+### その他  
 
 * 柴田 大  
 東京大学 宇宙科学2 講義公開資料  
