@@ -30,7 +30,7 @@ function output()
     savefig(plt, format("./images/{:d}.png", DEG))
 end
 
-DEG = 30
+DEG =  60
 
 n_list = [0, 1]
 r_list = [2, 6, 10, 20, 30].* MASS
