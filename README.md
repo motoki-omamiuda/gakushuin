@@ -1,18 +1,19 @@
 # 研究のバックアップ
 
-## LaTeX
+## pdf
 
 * 第一回発表（理論研夏ゼミ）  
-[*資料*](./docs/夏ゼミ.pdf)
+    * [*path*](./docs/夏ゼミ.pdf)
+    * [*s3*](https://motoki-public.s3.ap-northeast-1.amazonaws.com/gakushuin-reserch/%E5%A4%8F%E3%82%BB%E3%82%99%E3%83%9F%E7%99%BA%E8%A1%A8.pdf)
 
 * 第二回発表（大輪講）  
-[*作成中*](./)
+    * [*path*](./docs/大輪講.pdf)
 
 * 第三回発表（最終発表）  
-[*作成中*](./)
+    * [*作成中*](./)
 
 * まとめ資料  
-[*作成中*](./)
+    * [*作成中*](./)
 
 ## 参考文献
 
