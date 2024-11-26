@@ -2,7 +2,7 @@
 
 ## pdf
 
-* 第一回発表（理論研夏ゼミ）  
+* 第一回発表（夏ゼミ）  
     * [*path*](./docs/夏ゼミ.pdf)
     * [*s3*](https://motoki-public.s3.ap-northeast-1.amazonaws.com/gakushuin-reserch/%E5%A4%8F%E3%82%BB%E3%82%99%E3%83%9F%E7%99%BA%E8%A1%A8.pdf)
 
@@ -36,6 +36,9 @@
 
 ### その他  
 
+* 関口 雄一郎  
+[*一般相対性理論（再）入門*](https://www.lab.toho-u.ac.jp/sci/ph/astrophysics/staff/sekiguchi/tjoimi0000001ry0-att/lecture2024_v2.pdf)  
+
 * 柴田 大  
 東京大学 宇宙科学2 講義公開資料  
 [*幾何学とその表現の仕方:線素*](https://ea.c.u-tokyo.ac.jp/astro/Members/shibata/kougi1.pdf)  
@@ -46,6 +49,3 @@
 [*太陽重力場を用いた一般相対論の検証実験*](https://ea.c.u-tokyo.ac.jp/astro/Members/shibata/kougi6.pdf)  
 [*中性子星とその観測*](https://ea.c.u-tokyo.ac.jp/astro/Members/shibata/kougi7.pdf)  
 [*重力波*](https://ea.c.u-tokyo.ac.jp/astro/Members/shibata/kougi9.pdf)  
-
-* Gerard ’t Hooft  
-[*INTRODUCTION TO THE THEORY OF BLACK HOLES*](https://webspace.science.uu.nl/~hooft101/lectures/blackholes/BH_lecturenotes.pdf)  
