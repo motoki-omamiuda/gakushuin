@@ -403,9 +403,184 @@
 \end{equation*}
 \end{enumerate}
 
+% =================================
+% =================================
+% =================================
+% =================================
+% =================================
+% Buchdahl
+% =================================
+% =================================
+% =================================
+% =================================
+% =================================
+\chapter{02/12/2024}
+\section{Buchdahl時空における光の軌道}
+Buchdahl時空の計量は以下のように与えられる。
+\begin{equation*}
+\begin{split}
+	g_{ij} &= \mathrm{diag}
+	\left(
+		- \frac{(1 - f(r))^2}{(1 + f(r))^2},
+		(1 + f(r))^4,
+		r^2(1 + f(r))^4 ,
+		r^2 (1 + f(r))^4 \sin ^2 \theta 
+	\right)\\
+	f(r) &= \frac{a}{2\sqrt{1 + k r^2}} 
+\end{split}
+\end{equation*}
+測地線を考えるには、赤道面$ \theta = \frac{\pi}{2} $に注目すれば
+\begin{equation*}
+\begin{split}
+	S &= \int \mathcal{L} d\tau \\
+	&= \int \left(
+		- \frac{(1 - f(r))^2}{(1 + f(r))^2} \dot{t}^2
+		+ (1 + f(r))^4 \dot{r}^2
+		+ r^2(1 + f(r))^4 \dot{\phi}^2
+	\right) d\tau
+\end{split}
+\end{equation*}
+この変分を計算すれば良い。$ \mathcal{L} $は$t, \phi$をあらわには含まないので、オイラーラグランジュ方程式より
+\begin{equation*}
+\begin{split}
+	0 &
+		= \left( \frac{d\mathcal{L}}{d\dot{t}} \right)
+		= \frac{-2 (1 - f(r))^2 }{(1 + f(r))^2} \dot{t}\\
+	&\therefore  E = \frac{(1 - f(r))^2 }{(1 + f(r))^2} \dot{t}\\
+	0 &
+		= \left( \frac{d\mathcal{L}}{d\dot{\phi}} \right)
+		= 2 r^2 (1 + f(r))^4  \dot{\phi}\\
+	&\therefore  L = r^2 (1 + f(r))^4  \dot{\phi}\\
+\end{split}
+\end{equation*}
+また、nullの条件$0 = g_{ij}\dot{x}^i\dot{x}^j$より
+\begin{equation*}
+\begin{split}
+	0 &=
+		- \frac{(1 - f(r))^2}{(1 + f(r))^2} \dot{t}^2
+		+ (1 + f(r))^4 \dot{r}^2
+		+ r^2(1 + f(r))^4 \dot{\phi}^2\\
+	& \therefore 
+		\left( \frac{E}{L} \right)^2 =
+			\frac{(1 - f(r))^2}{r^4 (1 + f(r))^6} \left( \frac{dr}{d\phi} \right)^2
+			+ \frac{(1 - f(r))^2}{r^2 (1 + f(r))^6}
+\end{split}
+\end{equation*}
+ここで$u = \frac{1}{r}$、$b = \frac{L}{E}$とおくと
+\[ 1 = r^4 \left( \frac{du}{dr} \right) ^2 \]より
+\begin{equation*}
+\begin{split}
+	\left( \frac{1}{b} \right)^2 &=
+		\frac{(1 - f(1/u))^2}{(1 + f(1/u))^6} \left( \frac{du}{d\phi} \right)^2
+		+ \frac{u^2 (1 - f(1/u))^2}{(1 + f(1/u))^6}\\
+	& \therefore \left( \frac{du}{d\phi} \right)^2 = G(u) :=
+		\left( \frac{1}{b} \right)^2 \frac{(1 + f(1/u))^6}{(1 - f(1/u))^2} - u^2
+\end{split}
+\end{equation*}
+
+\section{パラメータの制約}
+$f(r)$のとりうる範囲を確認しておく。
+\[ 0 \leq f(r) \leq \frac{a}{2} \]
+いくつかの条件から、パラメータの制約を考える
+\begin{equation*}
+\begin{split}
+	\rho(r) &= \frac{ 24 \pi k f(r)^5 }{ \pi a^4 ( 1 + f(r) )^5 }\\
+	p(r) &= \frac{ 8 k f(r)^6 }{ \pi a^4 ( 1 - f(r)^2 )( 1 + f(r) )^4 }
+\end{split}
+\end{equation*}
+
+1) weak energy condition (WEC)
+\begin{equation*}
+\begin{split}
+	0 \leq & \rho(r)\\
+	0 \leq & \rho(r) + p(r)
+\end{split}
+\end{equation*}
+解析すると
+\begin{equation*}
+\begin{split}
+	0 \leq & 1 + \frac{ p(r) }{ \rho(r) }\\
+	&= 1 + \frac{ 8 k f(r)^6 }{ \pi a^4 ( 1 - f(r)^2 )( 1 + f(r) )^4 } \times \frac{ \pi a^4 ( 1 - f(r)^2 )( 1 + f(r) )^4 }{ 8 k f(r)^6 }\\
+	&= 1 + \frac{ f(r) }{ 3( 1 - f(r) ) }\\
+	\therefore & f(r) \leq 1 , \frac{ 3 }{ 2 } \leq f(r)
+\end{split}
+\end{equation*}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.5\columnwidth]{./images/wec.png}
+\caption{WEC}
+\label{}
+\end{figure}
+ここでのaの制約は
+\[ \frac{a}{2} \leq 1 \]
+
+2) strong energy condition (SEC)
+\begin{equation*}
+\begin{split}
+	0 \leq & \rho(r)\\
+	0 \leq & \rho(r) + 3p(r)
+\end{split}
+\end{equation*}
+解析すると
+\begin{equation*}
+\begin{split}
+	0 \leq & 1 + \frac{ 3p(r) }{ \rho(r) }\\
+	&= 1 + \frac{ f(r) }{ 1 - f(r) }\\
+	\therefore & f(r) \leq 1
+\end{split}
+\end{equation*}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.5\columnwidth]{./images/sec.png}
+\caption{SEC}
+\label{}
+\end{figure}
+ここでのaの制約は
+\[ \frac{a}{2} \leq 1 \]
+
+3) dominant energy condition (DEC)
+\begin{equation*}
+\begin{split}
+	0 \leq & \rho(r)\\
+	0 \leq & \rho(r) + |p(r)|
+\end{split}
+\end{equation*}
+解析すると
+\begin{equation*}
+\begin{split}
+	-1 \leq & \frac{ p(r) }{ \rho(r) } \leq 1\\
+	-1 \leq & \frac{ f(r) }{ 3 (1 - f(r) ) } \leq 1\\
+	\therefore & f(r) \leq \frac{3}{4}, \frac{3}{2} \leq f(r)
+\end{split}
+\end{equation*}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.5\columnwidth]{./images/dec.png}
+\caption{DEC}
+\label{}
+\end{figure}
+ここでのaの制約は
+\[ \frac{a}{2} \leq \frac{3}{4} \]
+
+以上より、パラメータの制約は
+\[ 0 \leq a \leq \frac{3}{2} \]
+
+\newpage
+
+
+
+
 \noindent
 /////////////////////////////////////////////////////////////////////////\\
 /////////////////////////////////////////////////////////////////////////
+
+% 行列
+\begin{equation*}
+\begin{pmatrix}
+   a & b \\
+   c & d
+\end{pmatrix}
+\end{equation*}
 
 % 方程式
 \begin{equation*}

@@ -6,3 +6,6 @@
 \contentsline {section}{\numberline {2.2}$P \approx 3M( 1 + \epsilon )$}{7}{section.2.2}%
 \contentsline {chapter}{\numberline {3}23/09/2024}{9}{chapter.3}%
 \contentsline {section}{\numberline {3.1}3次式の解}{9}{section.3.1}%
+\contentsline {chapter}{\numberline {4}02/12/2024}{11}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Buchdahl時空における光の軌道}{11}{section.4.1}%
+\contentsline {section}{\numberline {4.2}パラメータの制約}{12}{section.4.2}%

@@ -3,11 +3,12 @@
 ## pdf
 
 * 第一回発表（夏ゼミ）  
-    * [*path*](./docs/夏ゼミ.pdf)
-    * [*s3*](https://motoki-public.s3.ap-northeast-1.amazonaws.com/gakushuin-reserch/%E5%A4%8F%E3%82%BB%E3%82%99%E3%83%9F%E7%99%BA%E8%A1%A8.pdf)
+    * [*github*](./docs/夏ゼミ.pdf)
+    * [*aws-s3*](https://motoki-public.s3.ap-northeast-1.amazonaws.com/gakushuin-reserch/%E5%A4%8F%E3%82%BB%E3%82%99%E3%83%9F%E7%99%BA%E8%A1%A8.pdf)
 
 * 第二回発表（大輪講）  
-    * [*path*](./docs/大輪講.pdf)
+    * [*github*](./docs/大輪講.pdf)
+    * [*aws-s3*](https://motoki-public.s3.ap-northeast-1.amazonaws.com/gakushuin-reserch/%E5%A4%A7%E8%BC%AA%E8%AC%9B.pdf)
 
 * 第三回発表（最終発表）  
     * [*作成中*](./)

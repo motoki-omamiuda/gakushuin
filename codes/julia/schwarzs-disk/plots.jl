@@ -16,8 +16,8 @@ function init()
         legend=false,
         ratio=1, # アスペクト比を指定
         dpi=1600, # 解像度を指定
-        # grid=false,
-        # framestyle=:none, # 軸を消す
+        grid=false,
+        framestyle=:none, # 軸を消す
     )
     theta = range(0, stop=2*pi, length=100)
     for (i, j) in zip([2, 3 * sqrt(3)], [0.6, 0.3])
@@ -27,10 +27,10 @@ end
 
 
 function output()
-    savefig(plt, format("./images/{:d}.png", DEG))
+    savefig(plt, format("./images/{:d}_tmp.png", DEG))
 end
 
-DEG =  60
+DEG =  30
 
 n_list = [0, 1]
 r_list = [2, 6, 10, 20, 30].* MASS
