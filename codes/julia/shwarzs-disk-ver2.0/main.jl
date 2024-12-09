@@ -15,7 +15,7 @@ function main()
     x_list = []
     y_list = []
 
-    diff = 0.2
+    diff = 0.1
     equator_count = 0
 
     # make r and v_eff(r) list

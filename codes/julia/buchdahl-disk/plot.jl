@@ -20,6 +20,9 @@ y_list = []
 for (b_val, a_val) in zip(b_list, a_list)
     push!(x_list, - b_val * sin(a_val))
     push!(y_list, - b_val * cos(a_val))
+
+    push!(x_list, b_val * sin(a_val))
+    push!(y_list, - b_val * cos(a_val))
 end
 scatter!(plt, x_list, y_list, color=:black)
 

@@ -1,13 +1,12 @@
 using Revise: includet
 using Format
-using Plots
 
 includet("./methods.jl")
 includet("./constants.jl")
 includet("./functions.jl")
 
-using .Methods: calc_a, calc_b, write_txt, read_txt
-using .Functions: v_eff
+using .Methods: calc_a, calc_b, write_txt, read_txt, plots
+using .Functions: create_r_and_v_list
 using .Constants: A, DEGREE
 
 
@@ -18,17 +17,22 @@ function main()
     diff = 0.1
     equator_count = 0
 
-    # make r and v_eff(r) list
-    r_and_v_list = [] # [r, v_eff(r)]
-    for r in 0.01: 0.01: 1e3
-        push!(r_and_v_list, [r, v_eff(r)])
-    end
+    # create r and v_eff(r) list
+    r_and_v_lists = create_r_and_v_list()
+
+    # # test plot
+    # x_list = []
+    # y_list = []
+    # for r_and_v in r_and_v_lists
+    #     push!(x_list, r_and_v[1])
+    #     push!(y_list, r_and_v[2])
+    # end
+    # plots("r and Veff", x_list, y_list)
 
 
     for phi in diff: diff: pi
-    # for phi in 2.0: diff: 2.0
         a_val = calc_a(phi)
-        b_val = calc_b(20, phi, equator_count, r_and_v_list)
+        b_val = calc_b(20, phi, equator_count, r_and_v_lists)
 
         print("a:\t", a_val, "\n")
         print("b:\t", b_val, "\n")

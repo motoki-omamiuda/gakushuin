@@ -6,6 +6,7 @@ module Methods
     using .Constants: RADIAN, A
 
     using Plots
+    using Format
 
 
     function calc_a(phi)
@@ -20,7 +21,7 @@ module Methods
         return acos( inner_val )
     end
 
-    function calc_b(r, phi, equator_count, r_and_v_list)
+    function calc_b(r, phi, equator_count, r_and_v_lists)
         """
         calculate screen coordinate distance b
         """
@@ -33,8 +34,11 @@ module Methods
 
         fir_right_delta_phi = 0
         sec_right_delta_phi = 0
+
+        min_diff = 1e3
+        min_b = 30
         for b in 1: 0.01: 30
-            p = search_p(b, r_and_v_list)
+            p = search_p(b, r_and_v_lists)
             if r < p
                 continue
             end
@@ -45,12 +49,17 @@ module Methods
             # print("left:\t", left_delta_phi, "\n")
             print("int_p_in_c:\t", fir_right_delta_phi, "\n")
             print("int_p_not_in_c:\t", sec_right_delta_phi, "\n")
+            print("in_p:\t", left_delta_phi - fir_right_delta_phi, "\n")
+            print("not_in_p:\t", left_delta_phi - sec_right_delta_phi, "\n")
 
-            if abs(left_delta_phi - fir_right_delta_phi) < 0.1 || abs(left_delta_phi - sec_right_delta_phi) < 0.1
-                return b
+            if abs(left_delta_phi - fir_right_delta_phi) < min_diff
+                min_diff = abs(left_delta_phi - fir_right_delta_phi)
+                min_list = b
+            elseif abs(left_delta_phi - sec_right_delta_phi) < min_diff
+                min_diff = abs(left_delta_phi - sec_right_delta_phi)
+                min_list = b
             end
         end
-        return 10
     end
 
     function write_txt(path, x_list, y_list)
@@ -76,6 +85,15 @@ module Methods
             push!(y_list, parse(Float64, split(strip(line), ",")[2]))
         end
         return x_list, y_list
+    end
+
+    function plots(name, x_list, y_list)
+        """
+        plot x and y list
+        """
+        plt = plot( xlim=(0, 30), ylim=(0, 0.5), legend=false, dpi=1600)
+        scatter!(plt, x_list, y_list, color=:black, markersize=0.1)
+        savefig(plt, format("./images/{:s}.png", name))
     end
 
 end
