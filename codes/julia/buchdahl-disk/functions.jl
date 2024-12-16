@@ -71,7 +71,7 @@ module Functions
 
     function binary_search_p(b, r_and_v_lists)
         """
-        binary search p from b
+        binary search してない
         """
         min_diff = 1e3
         valid_p = 10
