@@ -7,13 +7,15 @@ includet("./constants.jl")
 using .Methods: read_txt
 using .Constants: A, DEGREE
 
+equator_count = 0
+
 plt = plot(
     xlim=(-35, 35), ylim=(-35, 35),
     legend=false,  #grid=false, framestyle=:none,
     ratio=1, dpi=1600,
 )
 
-b_list, a_list = read_txt(format("./datas/{:.1f}-{:d}.txt", A, DEGREE))
+b_list, a_list = read_txt(format("./datas/{:.1f}-{:d}-{:d}.txt", A, DEGREE, equator_count))
 
 x_list = []
 y_list = []
@@ -26,4 +28,4 @@ for (b_val, a_val) in zip(b_list, a_list)
 end
 scatter!(plt, x_list, y_list, color=:black)
 
-savefig(plt, format("./images/{:.1f}-{:d}.png", A, DEGREE))
+savefig(plt, format("./images/{:.1f}-{:d}-{:d}.png", A, DEGREE, equator_count))

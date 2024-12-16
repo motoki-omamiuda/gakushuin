@@ -2,7 +2,7 @@ module Methods
 
     include("./functions.jl")
     include("./constants.jl")
-    using .Functions: gamma, search_p, integer_p_in_c, integer_p_not_in_c
+    using .Functions: gamma, search_p, binary_search_p, integer_p_in_c, integer_p_not_in_c
     using .Constants: RADIAN, A
 
     using Plots
@@ -35,9 +35,37 @@ module Methods
         fir_right_delta_phi = 0
         sec_right_delta_phi = 0
 
+        min_b = []
+
+        pre_p = binary_search_p(1, r_and_v_lists)
+        pre_fir = left_delta_phi - integer_p_in_c(r, 1, pre_p)
+        pre_sec = left_delta_phi - integer_p_not_in_c(r, 1)
+        diff = 0.01
+        for b in 1 + diff: diff: 30
+            now_p = binary_search_p(b, r_and_v_lists)
+            if r < now_p
+                continue
+            end
+
+            now_fir = left_delta_phi - integer_p_in_c(r, b, now_p)
+            now_sec = left_delta_phi - integer_p_not_in_c(r, b)
+            if pre_fir * now_fir < 0
+                push!(min_b, b)
+            elseif pre_sec * now_sec < 0
+                push!(min_b, b)
+            end
+
+            pre_p = now_p
+            pre_fir = now_fir
+            pre_sec = now_sec
+        end
+        return min_b
+
         min_diff = 1e3
-        min_b = 30
+        min_b = 1e3
         for b in 1: 0.01: 30
+            # search_p(r, r_and_v_lists)
+            # binary_search_p(r, r_and_v_lists)
             p = search_p(b, r_and_v_lists)
             if r < p
                 continue
@@ -49,17 +77,18 @@ module Methods
             # print("left:\t", left_delta_phi, "\n")
             print("int_p_in_c:\t", fir_right_delta_phi, "\n")
             print("int_p_not_in_c:\t", sec_right_delta_phi, "\n")
-            print("in_p:\t", left_delta_phi - fir_right_delta_phi, "\n")
-            print("not_in_p:\t", left_delta_phi - sec_right_delta_phi, "\n")
+            print("diff_in_p:\t", left_delta_phi - fir_right_delta_phi, "\n")
+            print("diff_not_in_p:\t", left_delta_phi - sec_right_delta_phi, "\n")
 
             if abs(left_delta_phi - fir_right_delta_phi) < min_diff
                 min_diff = abs(left_delta_phi - fir_right_delta_phi)
-                min_list = b
+                min_b = b
             elseif abs(left_delta_phi - sec_right_delta_phi) < min_diff
                 min_diff = abs(left_delta_phi - sec_right_delta_phi)
-                min_list = b
+                min_b = b
             end
         end
+        return min_b
     end
 
     function write_txt(path, x_list, y_list)

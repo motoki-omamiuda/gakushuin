@@ -565,6 +565,54 @@ $f(r)$のとりうる範囲を確認しておく。
 以上より、パラメータの制約は
 \[ 0 \leq a \leq \frac{3}{2} \]
 
+% =================================
+% =================================
+% =================================
+% =================================
+% =================================
+% Buchdahl
+% =================================
+% =================================
+% =================================
+% =================================
+% =================================
+\chapter{16/12/2024}
+\section{Buchdahl時空の曲率}
+\begin{equation*}
+	g_{ab} = 
+	\begin{pmatrix}
+   	- \frac{(1 - f(r))^2}{(1 + f(r))^2} & & \\
+   	& (1 + f(r))^4 &\\
+	& & r^2(1 + f(r))^4\\
+	\end{pmatrix}
+\end{equation*}
+\begin{equation*}
+\begin{split}
+	f(r) &= \frac{a}{2 \sqrt{1 + kr^2} }\\
+	\frac{df}{dr} &= - \frac{ar}{2(1 + kr^2)^{\frac{3}{2}}} = - \frac{af(r)}{1 + kr^2}
+\end{split}
+\end{equation*}
+\[
+\tensor{\Gamma}{^a_{bc}} =
+	\frac{1}{2}g^{ad}\left( \frac{\partial g_{db}}{\partial x^c}
+	+ \frac{\partial g_{dc}}{\partial x^b}
+	- \frac{\partial g_{bc}}{\partial x^d} \right)
+\]
+\[
+\tensor{R}{^a_{bcd}} =
+	\frac{\partial \tensor{\Gamma}{^a_{bd}}}{\partial x^c}
+ 	- \frac{\partial \tensor{\Gamma}{^a_{bc}}}{\partial x^d}
+	+ \tensor{\Gamma}{^a_{ec}}\tensor{\Gamma}{^e_{bd}}
+	- \tensor{\Gamma}{^a_{ed}}\tensor{\Gamma}{^a_{bc}}
+\]
+\begin{equation*}
+\begin{split}
+	\frac{g_{tt}}{\partial x^r} &= - \frac{a f(r)}{1 + kr^2} \cdot \frac{4(1 - f(r))}{(1 + f(r))^3}\\
+	\frac{g_{rr}}{\partial x^r} &= - \frac{a f(r)}{1 + kr^2} \cdot 4(1 + f(r))^3\\
+	\frac{g_{\phi \phi}}{\partial x^r} &= 2r(1 + f(r)) - \frac{a f(r)}{1 + kr^2} \cdot 4 r^2 (1 + f(r))^3\\
+\end{split}
+\end{equation*}
+
 \newpage
 
 

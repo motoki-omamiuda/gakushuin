@@ -42,7 +42,7 @@ function main()
     end
 
     # create log file
-    write_txt(format("./datas/{:.1f}-{:d}.txt", A, DEGREE), x_list, y_list)
+    write_txt(format("./datas/{:.1f}-{:d}-{:d}.txt", A, DEGREE, equator_count), x_list, y_list)
 
 end
 

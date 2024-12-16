@@ -9,3 +9,5 @@
 \contentsline {chapter}{\numberline {4}02/12/2024}{11}{chapter.4}%
 \contentsline {section}{\numberline {4.1}Buchdahl時空における光の軌道}{11}{section.4.1}%
 \contentsline {section}{\numberline {4.2}パラメータの制約}{12}{section.4.2}%
+\contentsline {chapter}{\numberline {5}16/12/2024}{15}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Buchdahl時空の曲率}{15}{section.5.1}%

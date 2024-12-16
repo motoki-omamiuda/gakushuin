@@ -21,58 +21,35 @@ module Functions
         """
         effective potential
         """
-        # buchdahl
         return ( 1 - f(r) )^2 / ( r^2 * ( 1 + f(r) )^6 )
-
-        # schwarzschild
-        # return (1 / r)^2 * (1 - 2 / r)
     end
 
     function g(u, b)
-        # buchdahl
         return ( 1 / b )^2 * ( 1 + f( 1 / u ) )^6 / ( 1 - f( 1 / u ) )^2 - u^2
-
-        # schwarzschild
-        # return 2 * u^3 - u^2 + ( 1 / b )^2
     end
 
     function integer_p_in_c(r, b, p)
-        print("r:\t", r, "\n")
-        print("b:\t", b, "\n")
-        print("p:\t", p, "\n")
+        # print("r:\t", r, "\n")
+        # print("b:\t", b, "\n")
+        # print("p:\t", p, "\n")
 
-        print("g(1/p, b):\t", g(1/p, b), "\n")
-        print("g(1/r, b):\t", g(1/r, b), "\n")
-        print("g(0, b):\t", g(0, b), "\n")
+        # print("g(1/p, b):\t", g(1/p, b), "\n")
+        # print("g(1/r, b):\t", g(1/r, b), "\n")
+        # print("g(0, b):\t", g(0, b), "\n")
 
         integer_val_00, error = quadgk( x -> 1 / sqrt( g(x, b) ), 1 / r, 1 / p)
         integer_val_01, error = quadgk( x -> 1 / sqrt( g(x, b) ), 0, 1 / p)
         return integer_val_00 + integer_val_01
-
-        # try
-        #     integer_val_00, error = quadgk( x -> 1 / sqrt( g(x, b) ), 1 / r, 1 / p)
-        #     integer_val_01, error = quadgk( x -> 1 / sqrt( g(x, b) ), 0, 1 / p)
-        #     return integer_val_00 + integer_val_01
-        # catch
-        #     return 1e3
-        # end
     end
 
     function integer_p_not_in_c(r, b)
-        print("r:\t", r, "\n")
+        # print("r:\t", r, "\n")
 
-        print("g(1/r, b):\t", g(1/r, b), "\n")
-        print("g(0, b):\t", g(0, b), "\n")
+        # print("g(1/r, b):\t", g(1/r, b), "\n")
+        # print("g(0, b):\t", g(0, b), "\n")
 
         integer_val, error = quadgk( x -> 1 / sqrt( g(x, b) ), 0, 1 / r)
         return integer_val
-
-        # try
-        #     integer_val, error = quadgk( x -> 1 / sqrt( g(x, b) ), 0, 1 / r)
-        #     return integer_val
-        # catch
-        #     return 1e3
-        # end
     end
 
     function search_p(b, r_and_v_lists)
@@ -88,7 +65,26 @@ module Functions
                 valid_p = i[1]
             end
         end
+        print("normal search p:\t", valid_p, "\n")
         return valid_p
+    end
+
+    function binary_search_p(b, r_and_v_lists)
+        """
+        binary search p from b
+        """
+        min_diff = 1e3
+        valid_p = 10
+        pre_diff = 1e3
+        lat_diff = 1e3
+        for i in 1+1: length(r_and_v_lists)-1
+            pre_diff = 1 / b^2 - r_and_v_lists[i-1][2]
+            lat_diff = 1 / b^2 - r_and_v_lists[i+1][2]
+            if pre_diff * lat_diff < 0
+                print("binary search p:\t", r_and_v_lists[i+1][1], "\n")
+                return r_and_v_lists[i+1][1]
+            end
+        end
     end
 
     function create_r_and_v_list()
