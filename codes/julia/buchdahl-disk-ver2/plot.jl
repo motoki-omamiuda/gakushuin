@@ -55,10 +55,10 @@ plt = plot_closed_curve(plt, a_list, b_list, equator_count, "blue")
 a_list, b_list = read_txt(format("./data/{:.1f}/{:d}-{:d}-01.txt", A, DEGREE, equator_count))
 plt = plot_closed_curve(plt, a_list, b_list, equator_count, "blue")
 
-equator_count = 2
-a_list, b_list = read_txt(format("./data/{:.1f}/{:d}-{:d}-00.txt", A, DEGREE, equator_count))
-plt = plot_closed_curve(plt, a_list, b_list, equator_count, "green")
-a_list, b_list = read_txt(format("./data/{:.1f}/{:d}-{:d}-01.txt", A, DEGREE, equator_count))
-plt = plot_closed_curve(plt, a_list, b_list, equator_count, "green")
+# equator_count = 2
+# a_list, b_list = read_txt(format("./data/{:.1f}/{:d}-{:d}-00.txt", A, DEGREE, equator_count))
+# plt = plot_closed_curve(plt, a_list, b_list, equator_count, "green")
+# a_list, b_list = read_txt(format("./data/{:.1f}/{:d}-{:d}-01.txt", A, DEGREE, equator_count))
+# plt = plot_closed_curve(plt, a_list, b_list, equator_count, "green")
 
 savefig(plt, format("./images/{:.1f}-{:d}.png", A, DEGREE))

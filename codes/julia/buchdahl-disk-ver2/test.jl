@@ -15,7 +15,7 @@ function read_text(path)
     y_list = []
     for line in lines
         push!(x_list, parse(Float64, split(strip(line), ",")[1]))
-        push!(y_list, parse(Float64, split(strip(line), ",")[end]))
+        push!(y_list, parse(Float64, split(strip(line), ",")[2]))
     end
     print(x_list, "\n")
     print(y_list, "\n")
@@ -23,7 +23,7 @@ function read_text(path)
 end
 
 
-equator_count = 2
+equator_count = 1
 a_list, b_list = read_text(format("./data/{:.1f}/{:d}-{:d}.txt", A, DEGREE, equator_count))
 list_data = []
 for (a_val, b_val) in zip(a_list, b_list)

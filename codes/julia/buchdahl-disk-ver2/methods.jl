@@ -2,7 +2,7 @@ module Methods
 
     include("./functions.jl")
     include("./constants.jl")
-    using .Functions: gamma, search_p, binary_search_p, integer_p_in_c, integer_p_not_in_c
+    using .Functions: gamma, binary_search_p, integer_p_in_c, integer_p_not_in_c
     using .Constants: RADIAN, A
 
     using Plots
