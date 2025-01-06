@@ -1,7 +1,8 @@
 module Functions
     using QuadGK: quadgk
+    using Revise: includet
 
-    include("./constants.jl")
+    includet("./constants.jl")
     using .Constants: RADIAN, A
 
 

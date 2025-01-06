@@ -148,7 +148,7 @@ module Methods
         y_list = []
         for line in lines
             push!(x_list, parse(Float64, split(strip(line), ",")[1]))
-            push!(y_list, parse(Float64, split(strip(line), ",")[2]))
+            push!(y_list, parse(Float64, split(strip(line), ",")[end]))
         end
         print(x_list, "\n")
         print(y_list, "\n")

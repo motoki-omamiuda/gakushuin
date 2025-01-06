@@ -36,9 +36,9 @@ plt = plot(
     ratio=1, dpi=1600,
 )
 
-equator_count = 0
-a_list, b_list = read_txt(format("./datas/{:.1f}-{:d}-{:d}.txt", A, DEGREE, equator_count))
-plt = plot_closed_curve(plt, a_list, b_list, equator_count)
+# equator_count = 0
+# a_list, b_list = read_txt(format("./datas/{:.1f}-{:d}-{:d}.txt", A, DEGREE, equator_count))
+# plt = plot_closed_curve(plt, a_list, b_list, equator_count)
 
 equator_count = 1
 a_list, b_list = read_txt(format("./datas/{:.1f}-{:d}-{:d}-00.txt", A, DEGREE, equator_count))

@@ -11,7 +11,7 @@ for (a_val, b_val) in zip(a_list, b_list)
     push!(list_data, [a_val, b_val])
 end
 
-open("./datas/0.5-80-1-01.txt", "w") do file
+open("./datas/0.9-80-1-01.txt", "w") do file
     for data in list_data
         println(file, join(data, ","))
     end
