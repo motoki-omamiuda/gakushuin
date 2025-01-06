@@ -40,6 +40,4 @@ function create_output_data(a_val, b_val)
 end
 
 
-for i in 0:1
-    main(i)
-end
+main(equator_count=3)
