@@ -2,7 +2,7 @@ module Methods
 
     include("./functions.jl")
     include("./constants.jl")
-    using .Functions: gamma, search_p, binary_search_p, integer_p_in_c, integer_p_not_in_c
+    using .Functions: gamma, binary_search_p, integer_p_in_c, integer_p_not_in_c
     using .Constants: RADIAN, A
 
     using Plots
@@ -21,10 +21,11 @@ module Methods
         return acos( inner_val )
     end
 
-    function calc_b(r, phi, equator_count, r_and_v_lists)
+    function calc_b(r, phi, equator_count, r_and_v_list)
         """
         calculate screen coordinate distance b
         """
+        # calculate delta phi from geometric considerations
         left_delta_phi = 0
         if equator_count%2 == 0
             left_delta_phi = equator_count * pi + gamma(phi)
@@ -32,97 +33,69 @@ module Methods
             left_delta_phi = (equator_count + 1) * pi - gamma(phi)
         end
 
-        fir_right_delta_phi = 0
-        sec_right_delta_phi = 0
-
-        # min_b_01 = []
-        # min_b_02 = []
-        # p_list = []
-
-        """
-        equator_count = 0, 1
-        """
-        min_b = []
-
-        pre_p = binary_search_p(1, r_and_v_lists)
-        pre_fir = left_delta_phi - integer_p_in_c(r, 1, pre_p)
-        pre_sec = left_delta_phi - integer_p_not_in_c(r, 1)
-        pre_ave_fir = 0
-        pre_ave_sec = 0
-
-        diff = 0.01
-        for b in (1 + diff): diff: 30
-            now_p = binary_search_p(b, r_and_v_lists)
-            if r < now_p
+        # calculate delta phi from geometric considerations
+        fir_list = []
+        sec_list = []
+        b_list = []
+        for b_val in 0.1: 0.01: 30
+            p = binary_search_p(b_val, r_and_v_list)
+            if r < p
                 continue
             end
-
-            now_fir = left_delta_phi - integer_p_in_c(r, b, now_p)
-            now_sec = left_delta_phi - integer_p_not_in_c(r, b)
-
-            now_ave_fir = (pre_fir + now_fir) / 2
-            now_ave_sec = (pre_sec + now_sec) / 2
-
-            # if pre_fir * now_fir < 0
-            if pre_ave_fir * now_ave_fir < 0
-                push!(min_b, b)
-            # elseif pre_sec * now_sec < 0
-            elseif pre_ave_sec * now_ave_sec < 0
-                push!(min_b, b)
-            end
-
-            # push!(min_b_01, now_fir)
-            # push!(min_b_02, now_sec)
-            # push!(p_list, now_p)
-
-            pre_p = now_p
-            pre_fir = now_fir
-            pre_sec = now_sec
-
-            pre_ave_fir = now_ave_fir
-            pre_ave_sec = now_ave_sec
+            push!(
+                fir_list,
+                left_delta_phi - integer_p_in_c(r, b_val, p)
+            )
+            push!(
+                sec_list,
+                left_delta_phi - integer_p_not_in_c(r, b_val)
+            )
+            push!(b_list, b_val)
         end
 
-        # plt_00 = plot(p_list, min_b_01, color=:black)
-        # savefig(plt_00, format("./images/{:s}-01.png", "b"))
-        # write_txt("./datas/tmp_01.txt", p_list, min_b_01)
-        # plt_01 = plot(p_list, min_b_02, color=:red)
-        # savefig(plt_01, format("./images/{:s}-02.png", "b"))
-        # write_txt("./datas/tmp_02.txt", p_list, min_b_02)
-        return min_b
-
-    #     """
-    #     equator_count = 0
-    #     """
-    #     min_diff = 1e3
-    #     min_b = 1e3
-    #     for b in 1: 0.01: 30
-    #         p = binary_search_p(b, r_and_v_lists)
-    #         if r < p
-    #             continue
-    #         end
-
-    #         fir_right_delta_phi = integer_p_in_c(r, b, p)
-    #         sec_right_delta_phi = integer_p_not_in_c(r, b)
-
-    #         # print("left:\t", left_delta_phi, "\n")
-    #         print("int_p_in_c:\t", fir_right_delta_phi, "\n")
-    #         print("int_p_not_in_c:\t", sec_right_delta_phi, "\n")
-    #         print("diff_in_p:\t", left_delta_phi - fir_right_delta_phi, "\n")
-    #         print("diff_not_in_p:\t", left_delta_phi - sec_right_delta_phi, "\n")
-
-    #         if abs(left_delta_phi - fir_right_delta_phi) < min_diff
-    #             min_diff = abs(left_delta_phi - fir_right_delta_phi)
-    #             min_b = b
-    #         elseif abs(left_delta_phi - sec_right_delta_phi) < min_diff
-    #             min_diff = abs(left_delta_phi - sec_right_delta_phi)
-    #             min_b = b
-    #         end
-    #     end
-    #     return [min_b]
+        # calculate b value
+        b_return_value = []
+        pre_fir_sum = (
+            fir_list[1]
+            + fir_list[2]
+            + fir_list[3]
+            + fir_list[4]
+            + fir_list[5]
+        )
+        pre_sec_sum = (
+            sec_list[1]
+            + sec_list[2]
+            + sec_list[3]
+            + sec_list[4]
+            + sec_list[5]
+        )
+        for i in 5: length(fir_list) - 5
+            next_fir_sum = (
+                fir_list[i+4]
+                + fir_list[i+3]
+                + fir_list[i+2]
+                + fir_list[i+1]
+                + fir_list[i]
+            )
+            next_sec_sum = (
+                sec_list[i+4]
+                + sec_list[i+3]
+                + sec_list[i+2]
+                + sec_list[i+1]
+                + sec_list[i]
+            )
+            if pre_fir_sum * next_fir_sum < 0
+                push!(b_return_value, b_list[i])
+            elseif pre_sec_sum * next_sec_sum < 0
+                push!(b_return_value, b_list[i])
+            end
+            pre_fir_sum = next_fir_sum
+            pre_sec_sum = next_sec_sum
+        end
+        return b_return_value
     end
 
-    # function write_txt(path, x_list, y_list)
+
     function write_txt(path, list_data)
         """
         write x and y list to txt file
@@ -132,11 +105,6 @@ module Methods
                 println(file, join(data, ","))
             end
         end
-        # open(path, "w") do file
-        #     for (x, y) in zip(x_list, y_list)
-        #         println(file, join([x, y], ","))
-        #     end
-        # end
     end
 
     function read_txt(path)
@@ -153,25 +121,14 @@ module Methods
         print(x_list, "\n")
         print(y_list, "\n")
         return x_list, y_list
-
-        # lines = readlines(path)
-        # print(lines)
-        # match_data = match(r"Any\[(.*?)\],\s*([\d\.]+)", lines)
-        # result = []
-        # if match_data !== nothing
-        #     list_part = parse.(Float64, split(match_data.captures[1], ", "))
-        #     number = parse(Float64, match_data.captures[2])
-        #     push!(result, (list_part, number))
-        # end
-        # return result
     end
 
-    function plots(name, x_list, y_list)
+    function plots(name, x_list, y_list, color)
         """
         plot x and y list
         """
         plt = plot( xlim=(0, 30), ylim=(0, 0.5), legend=false, dpi=1600)
-        scatter!(plt, x_list, y_list, color=:black, markersize=0.1)
+        plot!(plt, x_list, y_list, color=color)
         savefig(plt, format("./images/{:s}.png", name))
     end
 

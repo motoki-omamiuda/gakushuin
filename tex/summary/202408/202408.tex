@@ -414,7 +414,7 @@
 % =================================
 % =================================
 % =================================
-\chapter{02/12/2024}
+\chapter{07/01/2025}
 \section{Buchdahl時空における光の軌道}
 Buchdahl時空の計量は以下のように与えられる。
 \begin{equation*}
@@ -444,12 +444,12 @@ Buchdahl時空の計量は以下のように与えられる。
 \begin{equation*}
 \begin{split}
 	0 &
-		= \left( \frac{d\mathcal{L}}{d\dot{t}} \right)
-		= \frac{-2 (1 - f(r))^2 }{(1 + f(r))^2} \dot{t}\\
+		= - \frac{1}{2}\left( \frac{d\mathcal{L}}{d\dot{t}} \right)
+		= \frac{ (1 - f(r))^2 }{(1 + f(r))^2} \dot{t}\\
 	&\therefore  E = \frac{(1 - f(r))^2 }{(1 + f(r))^2} \dot{t}\\
 	0 &
-		= \left( \frac{d\mathcal{L}}{d\dot{\phi}} \right)
-		= 2 r^2 (1 + f(r))^4  \dot{\phi}\\
+		= \frac{1}{2}\left( \frac{d\mathcal{L}}{d\dot{\phi}} \right)
+		= r^2 (1 + f(r))^4  \dot{\phi}\\
 	&\therefore  L = r^2 (1 + f(r))^4  \dot{\phi}\\
 \end{split}
 \end{equation*}
@@ -478,10 +478,20 @@ Buchdahl時空の計量は以下のように与えられる。
 \end{split}
 \end{equation*}
 
-\section{パラメータの制約}
-$f(r)$のとりうる範囲を確認しておく。
-\[ 0 \leq f(r) \leq \frac{a}{2} \]
-いくつかの条件から、パラメータの制約を考える
+\section{パラメータ$a$の条件}
+まず、$a=0$、$k=0$は距離に依存しない時空となるので今回は考えないことする。
+\subsection{$f(r)$による制約}
+$ |f(r)|=1 $ではクリストッフェルスカラーが発散する。これは時空に特異点が存在することを意味しており、そのような状況を考えるないことにすると、
+\begin{enumerate}[(1)\,]
+\item{$a>0$ \text{and} $k>0$では$f=1$を避けるために}
+\[0 < a < 2\]
+\item{$a>0$ \text{and} $k<0$ここが良くわからない}
+\item{$a<0$ \text{and} $k>0$では$f=-1$を避けるために}
+\[-2 < a < 0\]
+\item{$a<0$ \text{and} $k<0$ここが良くわからない}
+\end{enumerate}
+
+\subsection{standard energy conditionによる制約}
 \begin{equation*}
 \begin{split}
 	\rho(r) &= \frac{ 24 \pi k f(r)^5 }{ \pi a^4 ( 1 + f(r) )^5 }\\
@@ -489,81 +499,92 @@ $f(r)$のとりうる範囲を確認しておく。
 \end{split}
 \end{equation*}
 
-1) weak energy condition (WEC)
+\begin{enumerate}[(1)\,]
+\item{The weak energy condition (WEC)}
 \begin{equation*}
 \begin{split}
 	0 \leq & \rho(r)\\
 	0 \leq & \rho(r) + p(r)
 \end{split}
 \end{equation*}
-解析すると
+\item{The strong energy condition (SEC)}
+\begin{equation*}
+\begin{split}
+	0 \leq & \rho(r) + p(r)\\
+	0 \leq & \rho(r) + 3p(r)
+\end{split}
+\end{equation*}
+\item{The null energy condition(NEC)}
+\begin{equation*}
+\begin{split}
+	0 \leq & \rho(r) + p(r)\\
+\end{split}
+\end{equation*}
+\item{The dominant energy condition (DEC)}
+\begin{equation*}
+\begin{split}
+	0 \leq & \rho(r) - |p(r)|\\
+\end{split}
+\end{equation*}
+\end{enumerate}
+条件を分けして解析すると
+
+\begin{enumerate}[(1)\,]
+\item{$0 \leq \rho(r)$ and $0 \leq \rho(r) + p(r)$より}
 \begin{equation*}
 \begin{split}
 	0 \leq & 1 + \frac{ p(r) }{ \rho(r) }\\
 	&= 1 + \frac{ 8 k f(r)^6 }{ \pi a^4 ( 1 - f(r)^2 )( 1 + f(r) )^4 } \times \frac{ \pi a^4 ( 1 - f(r)^2 )( 1 + f(r) )^4 }{ 8 k f(r)^6 }\\
 	&= 1 + \frac{ f(r) }{ 3( 1 - f(r) ) }\\
-	\therefore & f(r) \leq 1 , \frac{ 3 }{ 2 } \leq f(r)
 \end{split}
 \end{equation*}
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.5\columnwidth]{./images/wec.png}
-\caption{WEC}
+\caption{}
 \label{}
 \end{figure}
-ここでのaの制約は
-\[ \frac{a}{2} \leq 1 \]
 
-2) strong energy condition (SEC)
-\begin{equation*}
-\begin{split}
-	0 \leq & \rho(r)\\
-	0 \leq & \rho(r) + 3p(r)
-\end{split}
-\end{equation*}
-解析すると
+\item{$0 \leq \rho(r)$ and $0 \leq \rho(r) + 3p(r)$より}
 \begin{equation*}
 \begin{split}
 	0 \leq & 1 + \frac{ 3p(r) }{ \rho(r) }\\
 	&= 1 + \frac{ f(r) }{ 1 - f(r) }\\
-	\therefore & f(r) \leq 1
 \end{split}
 \end{equation*}
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.5\columnwidth]{./images/sec.png}
-\caption{SEC}
+\caption{}
 \label{}
 \end{figure}
-ここでのaの制約は
-\[ \frac{a}{2} \leq 1 \]
 
-3) dominant energy condition (DEC)
-\begin{equation*}
-\begin{split}
-	0 \leq & \rho(r)\\
-	0 \leq & \rho(r) + |p(r)|
-\end{split}
-\end{equation*}
-解析すると
+\item{$0 \leq \rho(r)$ and $0 \leq \rho(r) - |p(r)|$より}
 \begin{equation*}
 \begin{split}
 	-1 \leq & \frac{ p(r) }{ \rho(r) } \leq 1\\
 	-1 \leq & \frac{ f(r) }{ 3 (1 - f(r) ) } \leq 1\\
-	\therefore & f(r) \leq \frac{3}{4}, \frac{3}{2} \leq f(r)
 \end{split}
 \end{equation*}
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.5\columnwidth]{./images/dec.png}
-\caption{DEC}
+\caption{}
 \label{}
 \end{figure}
-ここでのaの制約は
-\[ \frac{a}{2} \leq \frac{3}{4} \]
+\end{enumerate}
+以上をまとめると
+\[f(r) \leq \frac{3}{4}\]
 
-以上より、パラメータの制約は
-\[ 0 \leq a \leq \frac{3}{2} \]
+\subsection{$a$の条件}
+上記2つの制約をまとめると
+\begin{enumerate}[(1)\,]
+\item{$a>0$ and $k>0$ and $f(r) \leq \frac{3}{4}$では}\\
+\[0 < a \leq \frac{3}{2}\]
+\item{$a>0$ \text{and} $k<0$ここが良くわからない}
+\item{$a<0$ \text{and} $k>0$ここが良くわからない}
+\item{$a<0$ \text{and} $k<0$ここが良くわからない}
+\end{enumerate}
 
 % =================================
 % =================================
@@ -576,14 +597,15 @@ $f(r)$のとりうる範囲を確認しておく。
 % =================================
 % =================================
 % =================================
-\chapter{16/12/2024}
+\chapter{08/01/2025}
 \section{Buchdahl時空の曲率}
 \begin{equation*}
 	g_{ab} = 
 	\begin{pmatrix}
-   	- \frac{(1 - f(r))^2}{(1 + f(r))^2} & & \\
-   	& (1 + f(r))^4 &\\
-	& & r^2(1 + f(r))^4\\
+   	- \frac{(1 - f(r))^2}{(1 + f(r))^2} & & &\\
+   	& (1 + f(r))^4 & &\\
+	& & r^2(1 + f(r))^4 &\\
+	& & & r^2 (1 + f(r))^4 \sin^2{\theta}\\
 	\end{pmatrix}
 \end{equation*}
 \begin{equation*}
@@ -593,12 +615,6 @@ $f(r)$のとりうる範囲を確認しておく。
 \end{split}
 \end{equation*}
 \[
-\tensor{\Gamma}{^a_{bc}} =
-	\frac{1}{2}g^{ad}\left( \frac{\partial g_{db}}{\partial x^c}
-	+ \frac{\partial g_{dc}}{\partial x^b}
-	- \frac{\partial g_{bc}}{\partial x^d} \right)
-\]
-\[
 \tensor{R}{^a_{bcd}} =
 	\frac{\partial \tensor{\Gamma}{^a_{bd}}}{\partial x^c}
  	- \frac{\partial \tensor{\Gamma}{^a_{bc}}}{\partial x^d}
@@ -607,20 +623,87 @@ $f(r)$のとりうる範囲を確認しておく。
 \]
 \begin{equation*}
 \begin{split}
-	\frac{g_{tt}}{\partial x^r} &= - \frac{a f(r)}{1 + kr^2} \cdot \frac{4(1 - f(r))}{(1 + f(r))^3}\\
-	\frac{g_{rr}}{\partial x^r} &= - \frac{a f(r)}{1 + kr^2} \cdot 4(1 + f(r))^3\\
-	\frac{g_{\phi \phi}}{\partial x^r} &= 2r(1 + f(r)) - \frac{a f(r)}{1 + kr^2} \cdot 4 r^2 (1 + f(r))^3\\
+	\frac{g_{tt}}{\partial r} &=
+		- \frac{a f(r)}{1 + kr^2} \cdot \frac{2(1 - f(r))}{(1 + f(r))^2}
+		- \frac{a f(r)}{1 + kr^2} \cdot \frac{2(1 - f(r))^2}{(1 + f(r))^3}\\
+	\frac{g_{rr}}{\partial r} &=
+		- \frac{a f(r)}{1 + kr^2} \cdot 4(1 + f(r))^3\\
+	\frac{g_{\theta \theta}}{\partial r} &=
+		2r(1 + f(r))^4
+		- \frac{a f(r)}{1 + kr^2} \cdot 4 r^2 (1 + f(r))^3\\
+	\frac{g_{\phi \phi}}{\partial r} &=
+		2r(1 + f(r))^4\sin^2\theta
+		- \frac{a f(r)}{1 + kr^2} \cdot 4 r^2 (1 + f(r))^3\sin^2\theta\\
+	\frac{g_{\phi \phi}}{\partial \theta} &=
+		2r^2(1 + f(r))^4\sin\theta\\
+\end{split}
+\end{equation*}
+\subsection{クリストッフェル記号の計算}
+\[
+\tensor{\Gamma}{^a_{bc}} =
+	\frac{1}{2}g^{ad}\left( \frac{\partial g_{db}}{\partial x^c}
+	+ \frac{\partial g_{dc}}{\partial x^b}
+	- \frac{\partial g_{bc}}{\partial x^d} \right)
+\]
+クリストッフェル記号がゼロにならない添字の組み合わせ求める。
+\begin{enumerate}[(1)\,]
+\item{$t=a=d$では}
+\begin{equation*}
+\begin{split}
+	\tensor{\Gamma}{^t_{tr}} = \tensor{\Gamma}{^t_{rt}}
+\end{split}
+\end{equation*}
+\item{$r=a=d$では}
+\begin{equation*}
+\begin{split}
+	\tensor{\Gamma}{^r_{rr}}, \tensor{\Gamma}{^r_{tt}},
+	\tensor{\Gamma}{^r_{\theta\theta}}, \tensor{\Gamma}{^r_{\phi\phi}}\\
+\end{split}
+\end{equation*}
+\item{$\theta=a=d$では}
+\begin{equation*}
+\begin{split}
+	&\tensor{\Gamma}{^\theta_{\theta r}} = \tensor{\Gamma}{^\theta_{r \theta}}\\
+	&\tensor{\Gamma}{^\theta_{\phi \phi}}
+\end{split}
+\end{equation*}
+\item{$\phi=a=d$では}
+\begin{equation*}
+\begin{split}
+	&\tensor{\Gamma}{^\phi_{\phi r}} = \tensor{\Gamma}{^\phi_{r \phi}}\\
+	&\tensor{\Gamma}{^\phi_{\phi \theta}} = \tensor{\Gamma}{^\phi_{\theta \phi}}
+\end{split}
+\end{equation*}
+\end{enumerate}
+以上の成分をそれぞれ計算すると
+\begin{equation*}
+\begin{split}
+	\tensor{\Gamma}{^t_{tr}}
+		&= \frac{1}{2}(g_{tt})^{-1}\frac{\partial g_{tt}}{\partial r}\\
+	\tensor{\Gamma}{^r_{rr}}
+		&= \frac{1}{2}(g_{rr})^{-1}\frac{\partial g_{rr}}{\partial r}\\
+	\tensor{\Gamma}{^r_{tt}}
+		&= - \frac{1}{2}(g_{rr})^{-1}\frac{\partial g_{tt}}{\partial r}\\
+	\tensor{\Gamma}{^r_{\theta\theta}}
+		&= - \frac{1}{2}(g_{rr})^{-1}\frac{\partial g_{\theta\theta}}{\partial r}\\
+	\tensor{\Gamma}{^r_{\phi\phi}}
+		&= - \frac{1}{2}(g_{rr})^{-1}\frac{\partial g_{\phi\phi}}{\partial r}\\
+	\tensor{\Gamma}{^\theta_{\theta r}}
+		&= \frac{1}{2}(g_{\theta\theta})^{-1}\frac{\partial g_{rr}}{\partial \theta}\\
+	\tensor{\Gamma}{^\theta_{\phi \phi}}
+		&= - \frac{1}{2}(g_{\theta\theta})^{-1}\frac{\partial g_{\phi\phi}}{\partial \theta}\\
+	\tensor{\Gamma}{^\phi_{\phi r}}
+		&= \frac{1}{2}(g_{\phi\phi})^{-1}\frac{\partial g_{\phi\phi}}{\partial r}\\
+	\tensor{\Gamma}{^\phi_{\phi \theta}}
+		&= \frac{1}{2}(g_{\phi\phi})^{-1}\frac{\partial g_{\phi\phi}}{\partial \theta}\\
 \end{split}
 \end{equation*}
 
-\newpage
 
-
-
-
-\noindent
 /////////////////////////////////////////////////////////////////////////\\
 /////////////////////////////////////////////////////////////////////////
+\newpage
+\noindent
 
 % 行列
 \begin{equation*}
