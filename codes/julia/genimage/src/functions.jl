@@ -15,6 +15,9 @@ module Functions
         return ( 1 / b )^2 * ( 1 + f( 1 / u, a_val ) )^6 / ( 1 - f( 1 / u, a_val ) )^2 - u^2
     end
 
+    function gamma(phi, radian)
+        return acos( cos(phi) * sin(radian) )
+    end
 
     function create_r_and_v_list(a_val)
         r_and_v_list = []
