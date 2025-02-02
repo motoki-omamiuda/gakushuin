@@ -6,7 +6,7 @@ using .Consts: MASS
 using .Utils: plot_disk_image, read_text
 
 # library
-using Formatting
+using Format
 using Plots
 
 
@@ -15,7 +15,7 @@ function init()
         xlim=(-35, 35), ylim=(-35, 35),
         legend=false,
         ratio=1, # アスペクト比を指定
-        dpi=1600, # 解像度を指定
+        dpi=400, # 解像度を指定
         grid=false,
         framestyle=:none, # 軸を消す
     )
@@ -27,10 +27,10 @@ end
 
 
 function output()
-    savefig(plt, format("./images/{:d}_tmp.png", DEG))
+    savefig(plt, format("./images/{:d}-one.png", DEG))
 end
 
-DEG =  30
+DEG =  60
 
 n_list = [0, 1]
 r_list = [2, 6, 10, 20, 30].* MASS
@@ -56,5 +56,25 @@ for i in 1:length(n_list)
         end
     end
 end
+
+# DEG =  60
+
+# n_list = [0, 1, 2]
+# r_list = [20].* MASS
+
+# color_list = ["red", "blue", "black"]
+
+# init()
+# for i in 1:length(n_list)
+#     for j in 1:length(r_list)
+#         path = format("./datas/{:d}/{:d}M_{:d}.txt", DEG, r_list[j] / MASS, n_list[i])
+#         b_list, alpha_list = read_text(path)
+#         if n_list[i] % 2 == 0
+#             plot_disk_image(plt, b_list, alpha_list, color_list[i], false)
+#         else
+#             plot_disk_image(plt, b_list, alpha_list, color_list[i], true)
+#         end
+#     end
+# end
 
 output()

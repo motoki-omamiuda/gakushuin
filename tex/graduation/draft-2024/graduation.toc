@@ -7,8 +7,10 @@
 \contentsline {section}{\numberline {1.6}並行移動}{4}{section.1.6}%
 \contentsline {section}{\numberline {1.7}共変微分}{6}{section.1.7}%
 \contentsline {section}{\numberline {1.8}曲率}{6}{section.1.8}%
-\contentsline {section}{\numberline {1.9}測地線}{7}{section.1.9}%
-\contentsline {section}{\numberline {1.10}アインシュタイン方程式}{7}{section.1.10}%
-\contentsline {section}{\numberline {1.11}シュバルツシルトの外部解}{7}{section.1.11}%
-\contentsline {chapter}{\numberline {2}シュバルツシルト時空における天体の軌道}{8}{chapter.2}%
-\contentsline {section}{\numberline {2.1}軌道の安定性}{8}{section.2.1}%
+\contentsline {chapter}{\numberline {2}測地線方程式}{7}{chapter.2}%
+\contentsline {section}{\numberline {2.1}クラインゴルドン方程式}{7}{section.2.1}%
+\contentsline {section}{\numberline {2.2}導出}{7}{section.2.2}%
+\contentsline {section}{\numberline {2.3}アインシュタイン方程式}{8}{section.2.3}%
+\contentsline {section}{\numberline {2.4}シュバルツシルトの外部解}{8}{section.2.4}%
+\contentsline {chapter}{\numberline {3}シュバルツシルト時空における天体の軌道}{9}{chapter.3}%
+\contentsline {section}{\numberline {3.1}軌道の安定性}{9}{section.3.1}%

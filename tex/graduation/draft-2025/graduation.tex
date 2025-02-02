@@ -26,37 +26,41 @@
 \tableofcontents % 目次の作成
 \fontsize{11pt}{11pt}\selectfont % 文字サイズの指定
 
-% =================================
-% =================================
-% =================================
-% =================================
-% =================================
-% 測地線方程式
-% =================================
-% =================================
-% =================================
-% =================================
-% =================================
-\chapter{測地線方程式}
 
-超大質量天体は、降着円盤と呼ばれるガスなどの物質で構成された円盤を持つことが多い。降着円盤は中心天体を高速で公転しており、摩擦の影響で電磁波を放っている。
+% =================================
+% =================================
+% =================================
+% =================================
+% =================================
+% 光の条件
+% =================================
+% =================================
+% =================================
+% =================================
+% =================================
+\chapter{null条件}
+超大質量天体は降着円盤と呼ばれる、ガスなどの物質で構成された円盤を持つことが多い。降着円盤は中心天体を高速で公転しており、摩擦の影響で電磁波を放っている。
 今回は、重力中心から一定距離に幾何学的に薄い降着円盤を設定し、それがどのように観測されるのかを計算する。
 
-この計算をするためには、光が時空上でどのような軌道を描くのかを知っておかなければならない。これを記述する方程式が、質量のない粒子における測地線方程式であり、まずはこれを導出する。
+この計算をするためには、時空上で光の軌道が満たす方程式と、光の軌道が満たす条件を考慮する必要がある。ここではその条件を導出する。
 \section{クラインゴルドン方程式}
-$c=0, m=0$において、クラインゴルドン方程式は以下のように書ける
+クラインゴルドン場を$\phi(x, t)$とすると、クラインゴルドン方程式は以下のように書ける。
+\[
+	\left( \square+m^2 \right) \phi(x, t) = 0
+\]
+($c=1, \hbar=1$の単位系を用いた。)この式を計量$g_{ij}$で表される一般の時空に拡張し、$m=0$の波を考えると、式は以下のように変形できる。
 \begin{equation}
 \begin{split}
 	0 = g^{ij}\nabla_{i}\nabla_{j}\phi(x)
 \end{split}
 \end{equation}
-振動数が非常に大きい波を考えると、波は以下のように書ける
+振動数が非常に大きい波を考えると、波は以下のように書ける。
 \begin{equation}
 \begin{split}
 	\phi(x) = C(x)\exp{ \left( \frac{S(x)}{\epsilon}i \right) } \quad \epsilon \ll 1
 \end{split}
 \end{equation}
-これをまとめると、以下のように書ける。
+以上をまとめると、以下の式を導くことができる。
 \begin{equation*}
 \begin{split}
 	0 = g^{jk}(x)\nabla_{j}\nabla_{k}
@@ -64,7 +68,7 @@ $c=0, m=0$において、クラインゴルドン方程式は以下のように�
 \end{split}
 \end{equation*}
 
-\section{導出}
+\section{null条件の導出}
 上記で求めた式を少しづつ計算していく
 \begin{equation*}
 \begin{split}
@@ -101,81 +105,104 @@ $c=0, m=0$において、クラインゴルドン方程式は以下のように�
 	 O(0) &: g^{jk}(x) \nabla_j \nabla_k C(x) = 0\\
 	 O(\epsilon^{-1}) &:
 	 	2g^{jk}(x)(\nabla_j C(x))(\nabla_k S(x))
-		+ g^{jk}(x)C(x) (\nabla_j \nabla_k S(x))\\
+		+ g^{jk}(x)C(x) (\nabla_j \nabla_k S(x)) = 0\\
    	O(\epsilon^{-2}) &:
 		g^{jk}(x) (\nabla_j S(x))(\nabla_k S(x)) = 0\\
 \end{aligned}
 \right.
 \end{split}
 \end{equation*}
-上の関係式の中で、$O(\epsilon^{-2})$部分は測地線方程式そのものになっている。$O(\epsilon^{-2})$式全体の共変微分をとると
-\begin{equation*}
-\begin{split}
-	0 &= \nabla_j(\nabla^i S(x))(\nabla_i S(x)) \\
-	&= 	(\nabla_j \nabla^i S(x))(\nabla_i S(x))
-		+ (\nabla^i S(x))(\nabla_j \nabla_i S(x))
-\end{split}
-\end{equation*}
-波数ベクトル$\bold{k}$、アフィンパラメータ$\lambda$に対して以下の関係式が成り立つと仮定する。
-\[ \nabla^i S = k^i = \frac{d x^i}{d\lambda} \]
+光の波数ベクトル$\bold{k}$に対して以下の関係式が成り立つと仮定する。
+\[ \nabla^i S = k^i \]
 すると、$O(\epsilon^{-2})$式は以下のように書き換えられる。
-\[
-	0 = (\nabla_j k^i)k_i + k^i(\nabla_j k_i)
-\]
-\begin{tcolorbox}[title=一般のテンソルに対する共変微分]
-\begin{equation*}
-\begin{split}
-	\nabla_c \tensor{T}{^{a_1 \cdots a_i}_{b_1 \cdots b_j}}  
-	&=
-		\tensor{T}{^{a_1 \cdots a_i}_{b_1 \cdots b_j, c}}\\
-	&\quad
-		+ \sum^{m}_{d=1}
-		\tensor{\Gamma}{^{a_d}_{fc}}
-		\tensor{T}{^{a_1 \cdots a_{d-1} f a_{d+1} \cdots a_i}_{b_1 \cdots b_j}}\\
-	&\quad
-		- \sum^{m}_{e=1}
-		\tensor{\Gamma}{^{f}_{b_e c}}
-		\tensor{T}{^{a_1 \cdots a_i}_{b_1 \cdots b_{e-1} f b_{e+1} \cdots b_j}}\\
-\end{split}
-\end{equation*}
-\end{tcolorbox}
-共変微分が上記のように書けたことを思い出すと、式は以下のようにまとめられる。これが質量のない物質における測地線方程式である。
-\[
-0 = \frac{d^2 x^a}{d \lambda^2} + \tensor{\Gamma}{^{a}_{bc}}\frac{dx^b}{d\lambda}\frac{dx^c}{d\lambda}
-\]
+\[0 = k^i k_i\]
+これが光の軌道が満たす条件であり、以降はnull条件と呼ぶ。
 
 % =================================
 % =================================
 % =================================
 % =================================
 % =================================
-% シュワルツシルト解
+% シュバルツシルト解
 % =================================
 % =================================
 % =================================
 % =================================
 % =================================
-\chapter{シュワルツシルト解}
-一般相対論による強い重力の効果は、シュワルツシルト時空と呼ばれる球対称真空のブラックホール解を典型的な例として理解できる。シュワルツシルト時空の線素は以下のように書くことができる。
-
+\chapter{シュバルツシルト解}
+一般相対論による強い重力の効果は、シュバルツシルト時空と呼ばれる静的で真空球対称のブラックホール解を典型的な例として理解できる。まずはこの時空における降着円盤の像を計算しよう。\\
+まず、シュバルツシルト時空の線素は以下のように書くことができる。
 \[
 ds^2 =
 		-\left( 1 - \frac{2M}{r} \right)dt^2
 		+ \left( 1 - \frac{2M}{r} \right)^{-1}dr^2
 		+ r^2( d\theta^2 + \sin^2\theta d\phi^2 )
 \]
-この解は$r \rightarrow \infty$で漸近的にミンコフスキー時空に近づく。
+天体が作る重力場は漸近的に平坦であると考えられるが、この解は$r \rightarrow \infty$でその条件を満たしている。
 
 % =================================
 % 真空におけるアインシュタイン方程式の確認
 % =================================
-\section{解の確認}
+\section{解の導出}
+時空の構造が球対称であり、静的である（定常的である）とき、その計量の一般的な形をまず求めよう。
+
+\textcolor{red}{
 参考に書く：https://eman-physics.net/relativity/schwarzschild.html 
+}
 
 % =================================
-% 光の軌道が満たす微分方程式の導出
+% 光の軌道を表す微分方程式の導出
 % =================================
 \section{光の軌道が満たす微分方程式の導出}
+力を加えない限り曲がった時空上の物質は距離が停留点をとるような軌道を描くことが知られており、このような軌道を測地線と呼ぶ。ここではシュバルツシルト時空における光の軌道を表す微分方程式を導出する。\\
+距離を$S$、光の軌道を表すパラメータであり、波数ベクトルに対して
+\[
+	k^i = \frac{d x^i}{d \lambda}
+\]
+を満たすようなパラメータをアフィンパラメータと呼び、$\lambda$と書くと、距離は以下のように書ける。
+\begin{equation*}
+\begin{split}
+	S &= \int \mathcal{L} d\lambda \\
+	&= \int \left(
+		-\left( 1 - \frac{2M}{r} \right)\dot{t}^2
+		+ \left( 1 - \frac{2M}{r} \right)^{-1}\dot{r}^2
+		+ r^2( d\theta^2 + \sin^2\theta \dot{\phi}^2 )
+	\right) d\lambda
+\end{split}
+\end{equation*}
+シュバルツシルト時空は球対称であり、光は特定の赤道面に囚われた軌道をとることになるので$\theta = \frac{\pi}{2}$の面に注目することにすれば、以下のように書き換えることができる。
+\[
+S = 	\int \left(
+		-\left( 1 - \frac{2M}{r} \right)\dot{t}^2
+		+ \left( 1 - \frac{2M}{r} \right)^{-1}\dot{r}^2
+		+ r^2\dot{\phi}^2 )
+	\right) d\lambda
+\]
+この距離が停留点を取るので、オイラーラグランジュ方程式より
+\begin{equation*}
+\begin{split}
+	0 &
+		= - \frac{1}{2}\left( \frac{d\mathcal{L}}{d\dot{t}} \right)
+		= \left( 1 - \frac{2M}{r} \right) \dot{t}\\
+	&\therefore  E = \left( 1 - \frac{2M}{r} \right) \dot{t}\\
+	0 &
+		= \frac{1}{2}\left( \frac{d\mathcal{L}}{d\dot{\phi}} \right)
+		= r^2 \dot{\phi}\\
+	&\therefore  L = r^2  \dot{\phi}\\
+\end{split}
+\end{equation*}
+また、null条件 $0=k^ik_i$より
+\begin{equation*}
+\begin{split}
+	0 &= -\left( 1 - \frac{2M}{r} \right)\dot{t}^2
+		+ \left( 1 - \frac{2M}{r} \right)^{-1}\dot{r}^2
+		+ r^2\dot{\phi}^2\\
+	&\therefore
+		\left( \frac{E}{L} \right)^2 =
+			\frac{1}{r^2} \left( \frac{dr}{d\phi} \right)^2
+			+ \frac{1}{r^2} \left( 1 - \frac{2M}{r} \right)
+\end{split}
+\end{equation*}
 
 % =================================
 % =================================
@@ -189,14 +216,115 @@ ds^2 =
 % =================================
 % =================================
 \chapter{ブハダール解}
+続いて、曲率特異点を持たず、ホライズンも存在しないような自然な時空であるブハダール時空に着目し、降着円盤の見え方を考える。ブハダール時空の線素は以下のように書くことができる。
+\begin{equation*}
+\begin{split}
+	ds^2 &=
+		- \frac{(1 - f(r))^2}{(1 + f(r))^2} dt^2
+		+ (1 + f(r))^4 dr^2
+		+ r^2(1 + f(r))^4 d\theta^2
+		+ r^2 (1 + f(r))^4 \sin ^2 \theta d\phi^2 \\
+	f(r) &= \frac{a}{2\sqrt{1 + k r^2}} 
+\end{split}
+\end{equation*}
+この解も$r \rightarrow \infty$で平坦な時空に漸近する。
 
 % =================================
-% ブハダール解
+% 光の軌道を表す微分方程式の導出
 % =================================
-\section{ブハダール解}
+\section{光の軌道が満たす微分方程式の導出}
+ブハダール時空は球対称であり、光は特定の赤道面に囚われた軌道をとることになるので$\theta = \frac{\pi}{2}$の面に注目することにすれば、距離は以下のように書ける。
+\begin{equation*}
+\begin{split}
+	S  &= \int \mathcal{L} d\tau \\
+	&=  \int \left(
+			- \frac{(1 - f(r))^2}{(1 + f(r))^2} \dot{t}^2
+			+ (1 + f(r))^4 \dot{r}^2
+			+ r^2(1 + f(r))^4 \dot{\phi}^2
+		\right) d\tau
+\end{split}
+\end{equation*}
+この距離が停留点を取るので、オイラーラグランジュ方程式より
+\begin{equation*}
+\begin{split}
+	0 &
+		= - \frac{1}{2}\left( \frac{d\mathcal{L}}{d\dot{t}} \right)
+		= \frac{ (1 - f(r))^2 }{(1 + f(r))^2} \dot{t}\\
+	&\therefore  E = \frac{(1 - f(r))^2 }{(1 + f(r))^2} \dot{t}\\
+	0 &
+		= \frac{1}{2}\left( \frac{d\mathcal{L}}{d\dot{\phi}} \right)
+		= r^2 (1 + f(r))^4  \dot{\phi}\\
+	&\therefore  L = r^2 (1 + f(r))^4  \dot{\phi}\\
+\end{split}
+\end{equation*}
+また、null条件 $0=k^ik_i$より
+\begin{equation*}
+\begin{split}
+	0 &=
+		- \frac{(1 - f(r))^2}{(1 + f(r))^2} \dot{t}^2
+		+ (1 + f(r))^4 \dot{r}^2
+		+ r^2(1 + f(r))^4 \dot{\phi}^2\\
+	& \therefore 
+		\left( \frac{E}{L} \right)^2 =
+			\frac{(1 - f(r))^2}{r^4 (1 + f(r))^6} \left( \frac{dr}{d\phi} \right)^2
+			+ \frac{(1 - f(r))^2}{r^2 (1 + f(r))^6}
+\end{split}
+\end{equation*}
+これが、ブハダール時空における光の軌道が満たすべき式である。
+
+後の計算のために、衝突係数$b$、有効ポテンシャル$\mathrm{V_{eff}(r)}$、$u=\frac{1}{r}$を導入して式を書き換えておく。
+\begin{equation*}
+\begin{split}
+	G(u) 	&= \left( \frac{du}{d\phi} \right)^2\\ 
+	\left( \frac{1}{b} \right)^2 &=
+			G(u)
+			+ \mathrm{V_{eff}(r)}\\
+\end{split}
+\end{equation*}
+有効ポテンシャルは以下のような形になっている。
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\columnwidth]{./images/buch/v-eff.png}
+    \caption{有効ポテンシャル}
+    \label{}
+\end{figure}
+
+% =================================
+% パラメータの制約
+% =================================
+\section{パラメータの制約}
+
+% =================================
+% 光の軌道の解析
+% =================================
+\section{光の軌道の解析}
+
+\begin{figure}[H]
+    \centering
+    \begin{minipage}{0.49\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{./images//buch/80/80-0.5.png}
+        \caption{$\theta_{0}=80^{o} \quad a=0.5$}
+        \label{}
+    \end{minipage}
+    \begin{minipage}{0.49\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{./images//buch/80/80-1.0.png}
+        \caption{$\theta_{0}=80^{o} \quad a=1.0$}
+        \label{}
+    \end{minipage}
+    \begin{minipage}{0.49\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{./images//buch/80/80-1.5.png}
+        \caption{$\theta_{0}=80^{o} \quad a=1.5$}
+        \label{}
+    \end{minipage}
+\end{figure}
 
 
 
+
+\chapter{コピペ用テキスト}
 /////////////////////////////////////////////////////////////////////////\\
 /////////////////////////////////////////////////////////////////////////
 \textcolor{red}{テスト}
@@ -239,7 +367,7 @@ c & d
 % 画像
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.5\columnwidth]{./images/0106/01.png}
+    \includegraphics[width=0.5\columnwidth]{./images/buch/v-eff.png}
     \caption{並行移動}
     \label{}
 \end{figure}

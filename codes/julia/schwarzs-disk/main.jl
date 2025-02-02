@@ -10,7 +10,7 @@ using .Equas: alpha
 # library
 using Printf
 using Plots
-using Formatting
+using Format
 using Roots: find_zero
 
 # python library
@@ -38,8 +38,9 @@ end
 
 function main()
 
-    r_list = [2, 6, 10, 20, 30].* MASS
-    n = 1
+    # r_list = [2, 6, 10, 20, 30].* MASS
+    r_list = [20] .* MASS
+    n = 2
 
     phi_list = []
     phi = 0.0

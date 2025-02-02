@@ -7,7 +7,7 @@ using .Utils: write_text
 using Plots
 using Format
 
-function main(a_val::Float64)
+function main(plt, a_val::Float64)
     r_val::Float64 = 20.0
     b_lim = 21.85
 
@@ -53,23 +53,34 @@ function main(a_val::Float64)
 end
 
 global plt = plot(
-    xlim=(0, 23), ylim=(0, 5*pi),
+    xlim=(0, 23), ylim=(0, 7*pi),
     # aspect_ratio=:equal,
     legend=false, dpi=300
 )
 
 # for a in [1.5, 1.1, 0.8, 0.2]
 # for a in [1.5, 1.2, 0.9, 0.6, 0.3, 0.1]
-for a::Float64 in 0.1: 0.2: 1.5
-    plt = main(a)
-end
+# for a::Float64 in 0.1: 0.2: 1.5
+#     plt = main(a)
+# end
+
+# for a_val in [0.5, 1.0, 1.5]
+#     main(plt, a_val)
+# end
+main(plt, 1.5)
+
+# color_map = [
+#     (0, "#FF0000"),
+#     (1, "#FFA500"),
+#     (2, "#ADFF2F"),
+#     (3, "#00CED1"),
+#     (4, "#0000ff"),
+# ]
 
 color_map = [
     (0, "#FF0000"),
-    (1, "#FFA500"),
-    (2, "#ADFF2F"),
-    (3, "#00CED1"),
-    (4, "#0000ff"),
+    (1, "#0000ff"),
+    (2, "#000000")
 ]
 
 # 計算

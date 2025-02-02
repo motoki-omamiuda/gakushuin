@@ -1,8 +1,11 @@
-\contentsline {chapter}{\numberline {1}測地線方程式}{2}{chapter.1}%
+\contentsline {chapter}{\numberline {1}null条件}{2}{chapter.1}%
 \contentsline {section}{\numberline {1.1}クラインゴルドン方程式}{2}{section.1.1}%
-\contentsline {section}{\numberline {1.2}導出}{2}{section.1.2}%
-\contentsline {chapter}{\numberline {2}シュワルツシルト解}{4}{chapter.2}%
-\contentsline {section}{\numberline {2.1}解の確認}{4}{section.2.1}%
+\contentsline {section}{\numberline {1.2}null条件の導出}{3}{section.1.2}%
+\contentsline {chapter}{\numberline {2}シュバルツシルト解}{4}{chapter.2}%
+\contentsline {section}{\numberline {2.1}解の導出}{4}{section.2.1}%
 \contentsline {section}{\numberline {2.2}光の軌道が満たす微分方程式の導出}{4}{section.2.2}%
-\contentsline {chapter}{\numberline {3}ブハダール解}{5}{chapter.3}%
-\contentsline {section}{\numberline {3.1}ブハダール解}{5}{section.3.1}%
+\contentsline {chapter}{\numberline {3}ブハダール解}{6}{chapter.3}%
+\contentsline {section}{\numberline {3.1}光の軌道が満たす微分方程式の導出}{6}{section.3.1}%
+\contentsline {section}{\numberline {3.2}パラメータの制約}{8}{section.3.2}%
+\contentsline {section}{\numberline {3.3}光の軌道の解析}{8}{section.3.3}%
+\contentsline {chapter}{\numberline {4}コピペ用テキスト}{9}{chapter.4}%

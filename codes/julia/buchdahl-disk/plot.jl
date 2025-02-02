@@ -102,35 +102,46 @@ plt = plot(
 )
 
 # initialize
-deg = 80
-a_val = 0.1
+deg = 60
+a_val = 1.5
 
 equator_count = 0
-a_list, b_list = read_txt_last(format("./{:d}-data/{:.1f}/new-{:d}-{:d}.txt", deg, a_val, deg, equator_count))
-plt = plot_closed_curve(plt, a_list, b_list, equator_count, "red")
+a_list, b_list = read_txt_last(format("./{:d}-data/{:.1f}/{:d}-{:d}.txt", deg, a_val, deg, equator_count))
+plt = plot_closed_curve(plt, a_list, b_list, equator_count, "#FF0000")
 
 
 equator_count = 1
-# a_list, b_list = read_txt_first(format("./{:d}-data/{:.1f}/{:d}-{:d}.txt", deg, a_val, deg, equator_count))
-# plt = plot_closed_curve(plt, a_list, b_list, equator_count, "blue")
-# a_list, b_list = read_txt_last(format("./{:d}-data/{:.1f}/{:d}-{:d}.txt", deg, a_val, deg, equator_count))
-# plt = plot_closed_curve(plt, a_list, b_list, equator_count, "blue")
+a_list, b_list = read_txt_first(format("./{:d}-data/{:.1f}/{:d}-{:d}.txt", deg, a_val, deg, equator_count))
+plt = plot_closed_curve(plt, a_list, b_list, equator_count, "blue")
+a_list, b_list = read_txt_last(format("./{:d}-data/{:.1f}/{:d}-{:d}.txt", deg, a_val, deg, equator_count))
+plt = plot_closed_curve(plt, a_list, b_list, equator_count, "blue")
 
 # a_list, b_list = read_txt_first(format("./{:d}-data/{:.1f}/{:d}-{:d}.txt", deg, a_val, deg, equator_count))
-# plt = plot_curve(plt, a_list, b_list, equator_count, "blue")
+# plt = plot_curve(plt, a_list, b_list, equator_count, "#0000ff")
 # a_list, b_list = read_txt_last(format("./{:d}-data/{:.1f}/{:d}-{:d}.txt", deg, a_val, deg, equator_count))
-# plt = plot_curve(plt, a_list, b_list, equator_count, "blue")
+# plt = plot_curve(plt, a_list, b_list, equator_count, "#0000ff")
+
+# a_list, b_list = read_txt_first(format("./{:d}-data/{:.1f}/{:d}-{:d}-00.txt", deg, a_val, deg, equator_count))
+# plt = plot_closed_curve(plt, a_list, b_list, equator_count, "blue")
+# a_list, b_list = read_txt_last(format("./{:d}-data/{:.1f}/{:d}-{:d}-01.txt", deg, a_val, deg, equator_count))
+# plt = plot_closed_curve(plt, a_list, b_list, equator_count, "blue")
+
 
 equator_count = 2
-# a_list, b_list = read_txt_first(format("./{:d}-data/{:.1f}/{:d}-{:d}.txt", deg, a_val, deg, equator_count))
-# plt = plot_closed_curve(plt, a_list, b_list, equator_count, "green")
-# a_list, b_list = read_txt_last(format("./{:d}-data/{:.1f}/{:d}-{:d}.txt", deg, a_val, deg, equator_count))
-# plt = plot_closed_curve(plt, a_list, b_list, equator_count, "green")
+a_list, b_list = read_txt_first(format("./{:d}-data/{:.1f}/{:d}-{:d}.txt", deg, a_val, deg, equator_count))
+plt = plot_closed_curve(plt, a_list, b_list, equator_count, "#000000")
+a_list, b_list = read_txt_last(format("./{:d}-data/{:.1f}/{:d}-{:d}.txt", deg, a_val, deg, equator_count))
+plt = plot_closed_curve(plt, a_list, b_list, equator_count, "#000000")
 
 # a_list, b_list = read_txt_first(format("./{:d}-data/{:.1f}/{:d}-{:d}.txt", deg, a_val, deg, equator_count))
-# plt = plot_curve(plt, a_list, b_list, equator_count, "green")
+# plt = plot_curve(plt, a_list, b_list, equator_count, "#000000")
 # a_list, b_list = read_txt_last(format("./{:d}-data/{:.1f}/{:d}-{:d}.txt", deg, a_val, deg, equator_count))
-# plt = plot_curve(plt, a_list, b_list, equator_count, "green")
+# plt = plot_curve(plt, a_list, b_list, equator_count, "#000000")
+
+# a_list, b_list = read_txt_first(format("./{:d}-data/{:.1f}/{:d}-{:d}-00.txt", deg, a_val, deg, equator_count))
+# plt = plot_closed_curve(plt, a_list, b_list, equator_count, "#000000")
+# a_list, b_list = read_txt_last(format("./{:d}-data/{:.1f}/{:d}-{:d}-01.txt", deg, a_val, deg, equator_count))
+# plt = plot_closed_curve(plt, a_list, b_list, equator_count, "#000000")
 
 equator_count = 3
 # a_list, b_list = read_txt_first(format("./{:d}-data/{:.1f}/{:d}-{:d}.txt", deg, a_val, deg, equator_count))

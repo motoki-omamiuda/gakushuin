@@ -39,4 +39,4 @@ function create_output_data(a_val, b_val)
     return return_value
 end
 
-main(2)
+main(7)

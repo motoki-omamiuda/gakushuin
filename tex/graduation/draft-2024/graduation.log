@@ -1,4 +1,4 @@
-This is e-upTeX, Version 3.141592653-p4.1.1-u1.30-230214-2.6 (utf8.euc) (TeX Live 2024) (preloaded format=platex 2024.5.2)  19 NOV 2024 13:53
+This is e-upTeX, Version 3.141592653-p4.1.1-u1.30-230214-2.6 (utf8.euc) (TeX Live 2024) (preloaded format=platex 2024.5.2)  27 JAN 2025 22:09
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -882,21 +882,35 @@ File: ./images/0108/01.png Graphic file (type bmp)
  [5]
 
 Package amsmath Warning: Cannot use `split' here;
-(amsmath)                trying to recover with `aligned' on input line 258.
+(amsmath)                trying to recover with `aligned' on input line 266.
 
 
 Package amsmath Warning: Cannot use `split' here;
-(amsmath)                trying to recover with `aligned' on input line 270.
+(amsmath)                trying to recover with `aligned' on input line 278.
 
 
 Package amsmath Warning: Cannot use `split' here;
-(amsmath)                trying to recover with `aligned' on input line 280.
+(amsmath)                trying to recover with `aligned' on input line 288.
 
-[6] [7]
+[6]
 Chapter 2.
+
+Overfull \hbox (10.5734pt too wide) detected at line 359
+[]
+ []
+
+[7
+
+]
+
+Package amsfonts Warning: Obsolete command \bold; \mathbf should be used instea
+d on input line 383.
+
+[8]
+Chapter 3.
 File: ./images/0106/01.png Graphic file (type bmp)
 <./images/0106/01.png>
-[8
+[9
 
 ] (./graduation.aux)
  ***********
@@ -912,16 +926,22 @@ LaTeX Font Warning: Size substitutions with differences
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package rerunfilecheck Info: File `graduation.out' has not changed.
-(rerunfilecheck)             Checksum: 98FA2D3DBC4906B121ED7338F995B7CF;1301.
+
+Package rerunfilecheck Warning: File `graduation.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `graduation.out':
+(rerunfilecheck)             Before: 98FA2D3DBC4906B121ED7338F995B7CF;1301
+(rerunfilecheck)             After:  7BECADA015D70777817DA55D0F7FE630;1510.
  ) 
 Here is how much of TeX's memory you used:
- 23126 strings out of 474774
- 445711 string characters out of 5758802
+ 23128 strings out of 474774
+ 445745 string characters out of 5758802
  1935032 words of memory out of 5000000
- 45109 multiletter control sequences out of 15000+600000
+ 45111 multiletter control sequences out of 15000+600000
  583386 words of font info for 135 fonts, out of 8000000 for 9000
  929 hyphenation exceptions out of 8191
- 101i,22n,107p,466b,597s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 101i,25n,107p,466b,597s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on graduation.dvi (9 pages, 47556 bytes).
+Output written on graduation.dvi (10 pages, 57500 bytes).

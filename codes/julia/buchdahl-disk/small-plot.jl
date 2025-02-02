@@ -101,7 +101,7 @@ plt = plot(
 )
 
 # initialize
-deg = 80
+deg = 60
 a_val = 1.5
 
 # equator_count = 0
@@ -152,10 +152,10 @@ plt = plot_closed_curve(plt, a_list, b_list, equator_count, "purple")
 # a_list, b_list = read_txt_last(format("./{:d}-data/{:.1f}/{:d}-{:d}.txt", deg, a_val, deg, equator_count))
 # plt = plot_curve(plt, a_list, b_list, equator_count, "purple")
 
-equator_count = 5
-a_list, b_list = read_txt_first(format("./{:d}-data/{:.1f}/{:d}-{:d}.txt", deg, a_val, deg, equator_count))
-plt = plot_closed_curve(plt, a_list, b_list, equator_count, "brown")
-a_list, b_list = read_txt_last(format("./{:d}-data/{:.1f}/{:d}-{:d}.txt", deg, a_val, deg, equator_count))
-plt = plot_closed_curve(plt, a_list, b_list, equator_count, "brown")
+# equator_count = 5
+# a_list, b_list = read_txt_first(format("./{:d}-data/{:.1f}/{:d}-{:d}.txt", deg, a_val, deg, equator_count))
+# plt = plot_closed_curve(plt, a_list, b_list, equator_count, "brown")
+# a_list, b_list = read_txt_last(format("./{:d}-data/{:.1f}/{:d}-{:d}.txt", deg, a_val, deg, equator_count))
+# plt = plot_closed_curve(plt, a_list, b_list, equator_count, "brown")
 
 savefig(plt, format("./{:d}-image/small-{:.1f}-{:d}.png", deg, a_val, deg))
