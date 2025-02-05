@@ -1,5 +1,7 @@
 module Utils
 
+using QuadGK: quadgk
+
 function g(u, b)
     return ( 1 / b )^2 * ( 1 + f( 1 / u ) )^6 / ( 1 - f( 1 / u ) )^2 - u^2
 end
