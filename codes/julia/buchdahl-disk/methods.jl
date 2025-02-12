@@ -37,7 +37,7 @@ module Methods
         fir_list = []
         sec_list = []
         b_list = []
-        for b_val in 0.1: 0.01: 30
+        for b_val in 0.1: 0.01: 35
             p = binary_search_p(b_val, r_and_v_list)
             if r < p
                 continue

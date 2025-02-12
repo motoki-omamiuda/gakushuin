@@ -1,6 +1,6 @@
 module Constants
 
-DEGREE = 80
+DEGREE = 60
 RADIAN = DEGREE / 360 * 2 * pi
 A = 1.5
 

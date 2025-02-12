@@ -13,11 +13,17 @@ using .Constants: A, DEGREE
 function main(equator_count)
     r_and_v_list = create_r_and_v_list()
 
+    # r_val = 30
+    # r_val = 20
+    # r_val = 10
+    # r_val = 6
+    r_val = 3
+
     output_data = []
     diff = pi / 200
     for phi in 0: diff: pi
         a_val = calc_a(phi)
-        b_val = calc_b(20, phi, equator_count, r_and_v_list)
+        b_val = calc_b(r_val, phi, equator_count, r_and_v_list)
         print("a:\t", a_val, "\n")
         print("b:\t", b_val, "\n")
 
@@ -25,7 +31,7 @@ function main(equator_count)
     end
 
     write_txt(
-        format("./{:d}-data/{:.1f}/{:d}-{:d}.txt", DEGREE, A, DEGREE, equator_count),
+        format("./{:d}-data/{:.1f}/{:d}-{:d}-{:d}.txt", DEGREE, A, DEGREE, equator_count, r_val),
         output_data
     )
 end
@@ -39,4 +45,5 @@ function create_output_data(a_val, b_val)
     return return_value
 end
 
-main(7)
+main(0)
+main(1)

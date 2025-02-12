@@ -39,7 +39,7 @@ module Functions
         end
 
         diff_val = 1e-3
-        for r_val in 1.0 + diff_val: diff_val: 30.0
+        for r_val in 1.0 + diff_val: diff_val: 35.0
             push!(r_and_v_list, [r_val, v_eff(r_val)])
         end
 

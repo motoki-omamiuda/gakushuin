@@ -104,20 +104,18 @@ plt = plot(
 deg = 80
 a_val = 1.5
 
-# color = "#191970" #2
+# color = "#008b8b" #2
 # equator_count = 2
 
-# color = "#000080"  #3
+# color = "#0000cd"  #3
 # equator_count = 3
 
-# color = "#00008b" # 4
+# color = "#8b008b" # 4
 # equator_count = 4
 
-# color = "#008b8b" # 5
+# color = "#dc143c" # 5
 # equator_count = 5
 
-# color = "#2f4f4f" # 6
-# equator_count = 6
 
 
 # a_list, b_list = read_txt_first(format("./{:d}-data/{:.1f}/{:d}-{:d}.txt", deg, a_val, deg, equator_count))
@@ -133,11 +131,10 @@ a_val = 1.5
 # savefig(plt, format("./{:d}-image/small-{:.1f}-{:d}-{:d}.png", deg, a_val, deg, equator_count))
 
 style_list = [
-    (2, "#191970"),
-    (3, "#000080"),
-    (4, "#00008b"),
-    (5, "#008b8b"),
-    (6, "#2f4f4f")
+    (2, "#008b8b"),
+    (3, "#0000cd"),
+    (4, "#8b008b"),
+    (5, "#dc143c"),
 ]
 last_num = 6
 for (i, color) in style_list
