@@ -141,16 +141,6 @@ ds^2 =
 天体が作る重力場は漸近的に平坦であると考えられるが、この解は$r \rightarrow \infty$でその条件を満たしている。
 
 % =================================
-% 真空におけるアインシュタイン方程式の確認
-% =================================
-\section{解の導出}
-時空の構造が球対称であり、静的である（定常的である）とき、その計量の一般的な形をまず求めよう。
-
-\textcolor{red}{
-参考に書く：https://eman-physics.net/relativity/schwarzschild.html 
-}
-
-% =================================
 % 光の軌道を表す微分方程式の導出
 % =================================
 \section{光の軌道が満たす微分方程式の導出}
@@ -163,7 +153,7 @@ ds^2 =
 \begin{equation*}
 \begin{split}
 	S &= \int \mathcal{L} d\lambda \\
-	&= \int \left(
+	&= \int \frac{1}{2} \left(
 		-\left( 1 - \frac{2M}{r} \right)\dot{t}^2
 		+ \left( 1 - \frac{2M}{r} \right)^{-1}\dot{r}^2
 		+ r^2( d\theta^2 + \sin^2\theta \dot{\phi}^2 )
@@ -172,7 +162,7 @@ ds^2 =
 \end{equation*}
 シュバルツシルト時空は球対称であり、光は特定の赤道面に囚われた軌道をとることになるので$\theta = \frac{\pi}{2}$の面に注目することにすれば、以下のように書き換えることができる。
 \[
-S = 	\int \left(
+S = 	\int \frac{1}{2} \left(
 		-\left( 1 - \frac{2M}{r} \right)\dot{t}^2
 		+ \left( 1 - \frac{2M}{r} \right)^{-1}\dot{r}^2
 		+ r^2\dot{\phi}^2 )
@@ -182,18 +172,18 @@ S = 	\int \left(
 \begin{equation*}
 \begin{split}
 	0 &
-		= - \frac{1}{2}\left( \frac{d\mathcal{L}}{d\dot{t}} \right)
+		= - \frac{d}{d\lambda}\left( \frac{d\mathcal{L}}{d\dot{t}} \right)
 		= \left( 1 - \frac{2M}{r} \right) \dot{t}\\
-	&\therefore  E = \left( 1 - \frac{2M}{r} \right) \dot{t}\\
+	\text{ \textcolor{red}{エネルギー保存則} } &\therefore  E = \left( 1 - \frac{2M}{r} \right) \dot{t}\\
 	0 &
-		= \frac{1}{2}\left( \frac{d\mathcal{L}}{d\dot{\phi}} \right)
+		= \frac{d}{d\lambda}\left( \frac{d\mathcal{L}}{d\dot{\phi}} \right)
 		= r^2 \dot{\phi}\\
-	&\therefore  L = r^2  \dot{\phi}\\
+	\text{ \textcolor{red}{角運動量保存則} } &\therefore  L = r^2  \dot{\phi}\\
 \end{split}
 \end{equation*}
 また、null条件 $0=k^ik_i$より
-\begin{equation*}
-\begin{split}
+\begin{tcolorbox}[title=シュバルツシルト時空における光の方程式]
+\begin{eqnarray*}
 	0 &= -\left( 1 - \frac{2M}{r} \right)\dot{t}^2
 		+ \left( 1 - \frac{2M}{r} \right)^{-1}\dot{r}^2
 		+ r^2\dot{\phi}^2\\
@@ -201,8 +191,50 @@ S = 	\int \left(
 		\left( \frac{E}{L} \right)^2 =
 			\frac{1}{r^2} \left( \frac{dr}{d\phi} \right)^2
 			+ \frac{1}{r^2} \left( 1 - \frac{2M}{r} \right)
+\end{eqnarray*}
+\end{tcolorbox}
+後の計算のために、衝突係数$b = \frac{L}{E}$、有効ポテンシャル$\mathrm{V_{eff}}$、$u=\frac{1}{r}$を導入して式を書き換えておく。
+\begin{equation*}
+\begin{split}
+	G(u) 	&= \left( \frac{du}{d\phi} \right)^2\\ 
+	\left( \frac{1}{b} \right)^2 &=
+			u^2 G(u) + \mathrm{V_{eff}(u)}\\
 \end{split}
 \end{equation*}
+
+% =================================
+% 有効ポテンシャルの解析
+% =================================
+\section{有効ポテンシャルの解析}
+有効ポテンシャルは以下のような形になっている。
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\columnwidth]{./images/schwa/v-eff.png}
+    \caption{有効ポテンシャル（縦軸$V_{\mathrm{eff}}$ - 横軸$r/M$）}
+    \label{}
+\end{figure}
+これを解析し、ある有効ポテンシャルをもつ光がどのような軌道をとるか考える。
+\begin{equation*}
+\begin{split}
+	V_{\mathrm{eff}} &= \frac{1}{r^2} \left( 1 - \frac{2M}{r} \right) \\
+	V_{\mathrm{eff}}' &= \frac{2M}{r^4} \left( 3 - \frac{r}{M} \right) \\
+\end{split}
+\end{equation*}
+この式からわかることをまとめると、以下のようになる。
+\begin{enumerate}[(1)\,]
+\item{有効ポテンシャルが\textcolor{blue}{青線}の大きさを持つ光の軌道（$1/27 < V_{\mathrm{eff}}$）}\\
+この光は重力中心へ落下、もしくは無限遠まで飛んでゆく軌道とる。
+\item{有効ポテンシャルが\textcolor{red}{赤線}の大きさを持つ光の軌道（$1/27 = V_{\mathrm{eff}}$）}\\
+この光は不安定ではあるが、円軌道をとる。
+\item{有効ポテンシャルが\textcolor{green}{緑線}の大きさを持つ光の軌道（$1/27 > V_{\mathrm{eff}}$）}\\
+この光はあるところまで重力中心まで近づき、散乱されて無限遠に飛んでゆく軌道をとる。
+\end{enumerate}
+
+
+% =================================
+% 光の軌道を表す微分方程式の導出
+% =================================
+\section{有効ポテンシャルの解析}
 
 % =================================
 % =================================
@@ -272,7 +304,7 @@ S = 	\int \left(
 \end{equation*}
 これが、ブハダール時空における光の軌道が満たすべき式である。
 
-後の計算のために、衝突係数$b = \frac{L}{E}$、有効ポテンシャル$\mathrm{V_{eff}(r)}$、$u=\frac{1}{r}$を導入して式を書き換えておく。
+後の計算のために、衝突係数$b = \frac{L}{E}$、有効ポテンシャル$\mathrm{V_{eff}}$、$u=\frac{1}{r}$を導入して式を書き換えておく。
 \begin{equation*}
 \begin{split}
 	G(u) 	&= \left( \frac{du}{d\phi} \right)^2\\ 
