@@ -96,13 +96,13 @@ end
 
 plt = plot(
     xlim=(-35, 35), ylim=(-35, 35),
-    legend=false,  #grid=false, framestyle=:none,
+    legend=false,  grid=false, framestyle=:none,
     ratio=1,
     dpi=400,
 )
 
 # initialize
-deg = 60
+deg = 80
 a_val = 1.5
 r_list = [30, 20, 10, 6]
 # r_list = [30, 20]

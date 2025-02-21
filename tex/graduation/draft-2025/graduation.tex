@@ -182,15 +182,18 @@ S = 	\int \frac{1}{2} \left(
 \end{split}
 \end{equation*}
 また、null条件 $0=k^ik_i$より
-\begin{tcolorbox}[title=シュバルツシルト時空における光の方程式]
-\begin{eqnarray*}
+\begin{equation*}
+\begin{split}
 	0 &= -\left( 1 - \frac{2M}{r} \right)\dot{t}^2
 		+ \left( 1 - \frac{2M}{r} \right)^{-1}\dot{r}^2
 		+ r^2\dot{\phi}^2\\
-	&\therefore
-		\left( \frac{E}{L} \right)^2 =
-			\frac{1}{r^2} \left( \frac{dr}{d\phi} \right)^2
-			+ \frac{1}{r^2} \left( 1 - \frac{2M}{r} \right)
+\end{split}
+\end{equation*}
+\begin{tcolorbox}[title=シュバルツシルト時空における光の軌道を表す方程式]
+\begin{eqnarray*}
+	\left( \frac{E}{L} \right)^2 =
+		\frac{1}{r^2} \left( \frac{dr}{d\phi} \right)^2
+		+ \frac{1}{r^2} \left( 1 - \frac{2M}{r} \right)
 \end{eqnarray*}
 \end{tcolorbox}
 後の計算のために、衝突係数$b = \frac{L}{E}$、有効ポテンシャル$\mathrm{V_{eff}}$、$u=\frac{1}{r}$を導入して式を書き換えておく。
@@ -220,21 +223,16 @@ S = 	\int \frac{1}{2} \left(
 	V_{\mathrm{eff}}' &= \frac{2M}{r^4} \left( 3 - \frac{r}{M} \right) \\
 \end{split}
 \end{equation*}
-この式からわかることをまとめると、以下のようになる。
-\begin{enumerate}[(1)\,]
-\item{有効ポテンシャルが\textcolor{blue}{青線}の大きさを持つ光の軌道（$1/27 < V_{\mathrm{eff}}$）}\\
-この光は重力中心へ落下、もしくは無限遠まで飛んでゆく軌道とる。
-\item{有効ポテンシャルが\textcolor{red}{赤線}の大きさを持つ光の軌道（$1/27 = V_{\mathrm{eff}}$）}\\
-この光は不安定ではあるが、円軌道をとる。
-\item{有効ポテンシャルが\textcolor{green}{緑線}の大きさを持つ光の軌道（$1/27 > V_{\mathrm{eff}}$）}\\
-この光はあるところまで重力中心まで近づき、散乱されて無限遠に飛んでゆく軌道をとる。
-\end{enumerate}
+この式からわかることをまとめると、以下のことがわかった。\\
+有効ポテンシャルが\textcolor{blue}{青線}の大きさを持つ光（$1/27 < V_{\mathrm{eff}}$）は重力中心へ落下、もしくは無限遠まで飛んでゆく軌道とる。\\
+有効ポテンシャルが\textcolor{red}{赤線}の大きさを持つ光（$1/27 = V_{\mathrm{eff}}$）は不安定ではあるが、円軌道をとる。\\
+有効ポテンシャルが\textcolor{green}{緑線}の大きさを持つ光（$1/27 > V_{\mathrm{eff}}$）はあるところまで重力中心まで近づき、散乱されて無限遠に飛んでゆく軌道をとる。\\
 
 
 % =================================
-% 光の軌道を表す微分方程式の導出
+% 光の軌道を表す方程式の解析
 % =================================
-\section{有効ポテンシャルの解析}
+\section{光の軌道を表す方程式の解析}
 
 % =================================
 % =================================
