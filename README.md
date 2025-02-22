@@ -11,10 +11,10 @@
     * [*aws-s3*](https://motoki-public.s3.ap-northeast-1.amazonaws.com/gakushuin-reserch/%E5%A4%A7%E8%BC%AA%E8%AC%9B.pdf)
 
 * 第三回発表（最終発表）  
-    * [*作成中*](./)
+    * [*github*](./docs/卒業発表.pdf)
 
-* まとめ資料  
-    * [*作成中*](./)
+* 論文  
+    * [*arXiv*](https://arxiv.org/pdf/2502.11755)
 
 ## 参考文献
 
