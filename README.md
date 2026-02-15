@@ -12,6 +12,7 @@
 
 * 第三回発表（最終発表）  
     * [*github*](./docs/卒業発表.pdf)
+    * [*aws-s3*](https://motoki-public.s3.ap-northeast-1.amazonaws.com/gakushuin-reserch/%E5%8D%92%E6%A5%AD%E7%99%BA%E8%A1%A8.pdf)
 
 * 論文  
     * [*arXiv*](https://arxiv.org/pdf/2502.11755)
